@@ -1,0 +1,104 @@
+.document .document-info{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    padding: 30px 10px;
+    align-items: center;
+    direction: rtl;
+}
+
+.document .document-info .document-text p{
+    color: gray;
+}
+
+/* dark mode */
+
+.document .document-info .document-text.dark{
+    color: white;
+}
+
+/* icons */
+.document .document-info .document-icons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.document .document-info .document-icons .icon{
+    background-color: var(--icon-color);
+    padding: 3px 6px;
+    color: black;
+    border-radius: 50%;
+    transition: 200ms;
+    font-size: 35px;
+}
+.document .document-info .document-icons .icon:hover{
+    background-color: var(--icon-hover-color);
+    transition: 200ms;
+}
+
+.document .document-info .document-icons .icon:active{
+    transform: scale(1.05);
+}
+/* dark mode */
+.document .document-info .document-icons .icon.dark{
+    background-color: var(--icon-dark-color);
+    color: white;
+}
+
+/* document files */
+
+.document .document-files{
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap: 15px;
+}
+
+.document .document-files .document-file{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    direction: rtl;
+    padding: 0 10px;
+    align-items: center;
+    text-align: center;
+}
+
+.document .document-files .document-file .doument-file-info{
+    text-align: right;
+    font-size: 12px;
+}
+.document .document-files .document-file .doument-file-info p{
+    color: gray;
+}
+/* dark mode */
+.document .document-files .document-file .doument-file-info.dark{
+    color: white;
+}
+/* icons */
+.document .document-files .document-file .icon-file , .document .document-files .document-file .icon{
+    background-color: var(--light-green);
+    color: var(--green);
+    font-size: 40px;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 200ms;
+}
+.document .document-files .document-file .icon-file:hover{
+    background-color: rgba(0, 210, 0, 0.357);
+    transition: 200ms;
+}
+.document .document-files .document-file .icon-file:active,.document .document-files .document-file .icon:active{
+    transform: scale(1.1);
+}
+/* download icon */
+.document .document-files .document-file .icon{
+    font-size: 30px;
+    background-color: var(--icon-color);
+    color: black;
+}
+.document .document-files .document-file .icon:hover{
+    background-color: var(--icon-hover-color);
+}
+/* dark mode */
+.document .document-files .document-file .icon.dark{
+    color: white;
+    background-color: var(--icon-dark-color);
+}

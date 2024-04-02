@@ -1,0 +1,104 @@
+.star-info{
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    direction: rtl;
+    padding: 30px 5px;
+}
+
+.star-info .icons{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    align-items: center;
+    direction: ltr;
+    gap: 15px;
+}
+.star-info .icons .icon{
+    font-size: 30px;
+    background-color: var(--icon-color);
+    border-radius: 50%;
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    transition: 300ms;
+}
+
+.star-info .icons .icon:hover{
+    background-color: var(--icon-hover-color);
+    transition: 300ms;
+}
+.star-info .icons .icon:active{
+    transform: scale(1.05);
+}
+.star-info .text p{
+    color: gray;
+}
+/*   dark mode   */
+.star-info .text.dark{
+    color: white;
+}
+.star-info .icons .icon.dark{
+    background-color: var(--icon-dark-color) ;
+    color: white;
+}
+
+
+/* star  users */
+.star .star-users {
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap: 15px;
+}
+
+.star .star-users .star-user{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    direction: rtl;
+    text-align: center;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.star .star-users .star-user img{
+    height: 50px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 20px;
+    object-position: center;
+}
+
+.star .star-users .star-user .star-user-text p{
+    color: gray;
+    font-size: 12px;
+}
+
+.star .star-users .star-user .star-user-text { 
+    text-align: right;
+    padding: 0 10px;
+}
+
+/*  dark mode    */
+.star .star-users .star-user .star-user-text.dark{
+    color: white;
+}
+
+.star .star-users .star-user .star-icon {
+    color: var(--green);
+    font-size: 40px;
+    background-color: var(--light-green);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.star .star-users .star-user .star-icon:hover{
+    background-color: rgba(0, 219, 0, 0.437);
+    transition: 200ms;
+}
+
+.star .star-users .star-user .star-icon:active{
+    transform: scale(1.1);
+}

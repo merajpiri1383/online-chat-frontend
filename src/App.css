@@ -10,18 +10,24 @@
   --blue : rgb(0,110,255);
   --dark : rgba(0, 0, 0, 0.859);
   --icon-color : rgba(241, 241, 241, 0.823);
-  --icon-hover-color : rgba(208, 208, 208, 0.446);
+  --icon-dark-color : rgb(62, 62, 62); 
+  --icon-hover-color : rgba(208, 208, 208, 0.861);
 }
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: vazir;
+  font-family: vazir,sans-serif;
 }
 .container{
   display: flex;
   overflow: hidden;
   background-color: rgba(0, 110, 255, 0.18);
+  transition: 500ms;
+}
+/* dark background */
+.container.dark{
+  background-color: rgb(32, 32, 32);
 }
 .pannel{
   width: 25%;

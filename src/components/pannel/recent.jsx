@@ -1,23 +1,72 @@
-import { GrAppsRounded } from "react-icons/gr";
+// style
 import "../../static/pannel-apps/recent.css";
-import { useSelector,useDispatch } from "react-redux";
+// icons 
+import { useSelector, useDispatch } from "react-redux";
 import { changeShowPannel } from "../../reducers/background";
-import RecentSlider from "./recentSlider";
+import { IoIosSearch } from "react-icons/io";
+import { GrAppsRounded } from "react-icons/gr";
+import { FaMessage } from "react-icons/fa6";
+import { IoCall } from "react-icons/io5";
+import { MdGroup } from "react-icons/md";
+// reducers 
+import {changeComponent} from "../../reducers/pannel";
+// components  
+import Call from "../pannel_sub/call";
+import Contact from "../pannel_sub/contact";
+import Message from "../pannel_sub/message";
 const Recent = () => {
-    const mode = useSelector((state)=> state.background.mode);
-    const dispatch = useDispatch() ;
+    const mode = useSelector((state) => state.background.mode);
+    const component = useSelector((state)=> state.pannel.component);
+    const dispatch = useDispatch();
     return (
         <div className="recent">
-            <div className="recent-info-top">
-                <div className="recent-info-top-left">
-                    <GrAppsRounded className={"recent-info-top-left-icon " + mode} 
-                    onClick={()=> dispatch(changeShowPannel())} />
+            <div className="recent-info">
+                <div className="recent-info-left">
+                    <GrAppsRounded className={"recent-info-left " + mode}
+                        onClick={() => dispatch(changeShowPannel())} />
                 </div>
-                <div className={"recent-info-top-right " + mode}>
+                <div className={"recent-info-right " + mode}>
                     <h2 className={mode}>اخیر</h2>
                     <p className={mode}>گفتگوهای اخیر شما</p>
                 </div>
             </div>
+            <div className="recent-info">
+                <div className="recent-info-left">
+                    <IoIosSearch className={"recent-info-left " + mode} />
+                </div>
+                <div className="recent-info-right">
+                    <h2 className={mode}>گفتگو</h2>
+                    <p className={mode}>آغاز گفتگوی جدید</p>
+                </div>
+            </div>
+            <div className="recent-buttons">
+                <div className="main-buttons">
+                    <button className={`main-button ${component==="contact"?"active":""}`} 
+                    onClick={()=> dispatch(changeComponent("contact"))}>
+                        <p>مخاطبین</p>
+                        <MdGroup className="main-button-icon" />
+                    </button>
+                    <button className={`main-button ${component==="call"?"active":""}`}  
+                    onClick={()=> dispatch(changeComponent("call"))}>
+                        <p>تماس</p>
+                        <IoCall className="main-button-icon" />
+                    </button>
+                    <button className={`main-button ${component==="message"?"active":""}`}  
+                    onClick={()=> dispatch(changeComponent("message"))}>
+                        <p>گفتگو</p>
+                        <FaMessage className="main-button-icon" />
+                    </button>
+                </div>
+            </div>
+            {
+                component === "contact" ? <Contact /> : ""
+            }
+            {
+                component === "call" ? <Call /> : ""
+            }
+            {
+                component === "message" ? <Message/> : ""
+            }
         </div>
     )
 }; export default Recent;
