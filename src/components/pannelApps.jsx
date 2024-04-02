@@ -1,6 +1,6 @@
 import { useSelector , useDispatch } from "react-redux";
 import { changeMode ,changeLink } from "../reducers/background";
-import { useParams } from "react-router-dom";
+import { BiSolidMessageRounded } from "react-icons/bi";
 // icons 
 import { Link , Outlet } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
@@ -14,13 +14,15 @@ import { IoMoonSharp } from "react-icons/io5";
 import { CiPower } from "react-icons/ci";
 const PannelApps = () => {
     const colorMode = useSelector((state)=> state.background.mode);
+    const showPannel = useSelector((state) => state.background.showPannel);
     const dispatch = useDispatch();
-    const param = useParams() ;
-    console.log(param)
     return (
-        <div className="pannel-apps">
+        <div className={`pannel-apps ${showPannel? "show":"hide"}`}>
             <div className={"links "+colorMode}>
-            <Link className={"link "+colorMode} to={"/"}>
+            <div className="logo">
+                <BiSolidMessageRounded className="logo-image" />
+            </div>
+            <Link className={"link "+colorMode} to={"/status"}>
                 <FaUserAlt className={"link-icon "+colorMode} />
             </Link>
             <Link className={"link "+colorMode} to={"/favorit"}>

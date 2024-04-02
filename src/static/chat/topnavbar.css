@@ -1,0 +1,74 @@
+.top-navbar{
+    margin: 35px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: white;
+    position: fixed;
+    width: 70%;
+}
+
+
+.top-navbar .top-navbar-right{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.top-navbar .top-navbar-right .top-navbar-right-left{
+    padding: 10px 0;
+}
+
+.top-navbar .top-navbar-right .top-navbar-right-right{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+.top-navbar .top-navbar-right .top-navbar-right-right .top-navbar-right-right-info{
+    display: grid;
+    grid-template-columns: 1fr ;
+    font-size: 14px;
+    direction: rtl;
+}
+.top-navbar .top-navbar-right .top-navbar-right-right .top-navbar-right-right-info .badge{
+    background-color: var(--green);
+    color: white;
+    margin: auto 0;
+    width: 60px;
+    text-align: center;
+    border-radius: 15px;
+}
+.top-navbar .top-navbar-right .top-navbar-right-right .top-navbar-right-right-img{
+    text-align: center;
+}
+.top-navbar .top-navbar-right .top-navbar-right-right .top-navbar-right-right-img img{
+    height: 70px;
+    object-fit: cover;
+    object-position: center;
+    width: 90px;
+    border-radius: 25px;
+}
+.top-navbar .top-navbar-left{
+    padding: 10px;
+}
+
+.top-navbar .icon{
+    font-size: 40px;
+    margin: 10px;
+    padding: 10px;
+    background-color: var(--icon-color);
+    transition: 300ms;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.top-navbar .icon:hover{
+    background-color: var(--icon-hover-color);
+    transition: 300ms;
+}
+
+/* dark mode */
+.top-navbar.dark .icon{
+    color: white;
+    background-color: rgb(62, 62, 62);
+}
+.top-navbar.dark{
+    background-color: var(--dark);
+}

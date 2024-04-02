@@ -3,7 +3,8 @@ const backgroundSlice = createSlice({
     name : "background",
     initialState : {
         mode : "light",
-        link : "status"
+        link : "status",
+        showPannel : true,
     },
     reducers : {
         changeMode : (state)=>{
@@ -15,6 +16,9 @@ const backgroundSlice = createSlice({
         },
         changeLink : (state,action) => {
             state.link = action.payload
+        },
+        changeShowPannel : (state) => {
+            state.showPannel = !state.showPannel
         }
     }
-});export const {changeMode} = backgroundSlice.actions;export default backgroundSlice.reducer;
+});export const {changeMode,changeShowPannel} = backgroundSlice.actions;export default backgroundSlice.reducer;

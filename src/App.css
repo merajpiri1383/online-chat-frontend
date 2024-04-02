@@ -3,6 +3,15 @@
   src: url("./static/fonts/Vazir.eot");
   src: url("./static/fonts/Vazir-Bold.eot");
 }
+:root{
+  --green : rgb(0, 199, 0);
+  --light-green : rgba(0, 199, 0, 0.193);
+  --gray : rgba(128, 128, 128, 0.331);
+  --blue : rgb(0,110,255);
+  --dark : rgba(0, 0, 0, 0.859);
+  --icon-color : rgba(241, 241, 241, 0.823);
+  --icon-hover-color : rgba(208, 208, 208, 0.446);
+}
 *{
   margin: 0;
   padding: 0;
@@ -11,10 +20,18 @@
 }
 .container{
   display: flex;
+  overflow: hidden;
+  background-color: rgba(0, 110, 255, 0.18);
 }
 .pannel{
-  width: 30%;
+  width: 25%;
 }
 .chat{
-  width: 70%;
+  width: 75%;
+  position: relative;
+}
+h2.dark{
+  color: white !important;
+}p.dark{
+  color: white;
 }
