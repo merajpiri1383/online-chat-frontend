@@ -1,7 +1,7 @@
 import Pannel from "./components/pannel";
 import Chat from "./components/chat";
 import { useSelector } from "react-redux";
-import "./App.css";
+import "./static/App.css";
 const App = () => {
   const mode = useSelector((state)=> state.background.mode);
   return (

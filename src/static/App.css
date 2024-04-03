@@ -1,11 +1,11 @@
 @font-face{
   font-family: vazir;
-  src: url("./static/fonts/Vazir.eot");
-  src: url("./static/fonts/Vazir-Bold.eot");
+  src: url("./fonts/Vazir.eot");
+  src: url("./fonts/Vazir-Bold.eot");
 }
 :root{
   --green : rgb(0, 199, 0);
-  --light-green : rgba(0, 199, 0, 0.193);
+  --light-green : rgba(0, 199, 0, 0.073);
   --gray : rgba(128, 128, 128, 0.331);
   --blue : rgb(0,110,255);
   --dark : rgba(0, 0, 0, 0.859);
@@ -17,7 +17,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: vazir,sans-serif;
+  font-family:vazir ,sans-serif;
 }
 .container{
   display: flex;
@@ -34,10 +34,19 @@
 }
 .chat{
   width: 75%;
-  position: relative;
+  position: relative; 
 }
 h2.dark{
   color: white !important;
 }p.dark{
   color: white;
+}
+/* media  */
+@media only screen and (max-width:992px){
+  .chat{
+    display: none;
+  }
+  .pannel{
+    width: 100%;
+  }
 }

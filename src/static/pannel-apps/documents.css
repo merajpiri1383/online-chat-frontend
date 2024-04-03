@@ -22,28 +22,6 @@
     justify-content: space-between;
 }
 
-.document .document-info .document-icons .icon{
-    background-color: var(--icon-color);
-    padding: 3px 6px;
-    color: black;
-    border-radius: 50%;
-    transition: 200ms;
-    font-size: 35px;
-}
-.document .document-info .document-icons .icon:hover{
-    background-color: var(--icon-hover-color);
-    transition: 200ms;
-}
-
-.document .document-info .document-icons .icon:active{
-    transform: scale(1.05);
-}
-/* dark mode */
-.document .document-info .document-icons .icon.dark{
-    background-color: var(--icon-dark-color);
-    color: white;
-}
-
 /* document files */
 
 .document .document-files{
@@ -87,18 +65,4 @@
 }
 .document .document-files .document-file .icon-file:active,.document .document-files .document-file .icon:active{
     transform: scale(1.1);
-}
-/* download icon */
-.document .document-files .document-file .icon{
-    font-size: 30px;
-    background-color: var(--icon-color);
-    color: black;
-}
-.document .document-files .document-file .icon:hover{
-    background-color: var(--icon-hover-color);
-}
-/* dark mode */
-.document .document-files .document-file .icon.dark{
-    color: white;
-    background-color: var(--icon-dark-color);
 }

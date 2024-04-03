@@ -9,6 +9,7 @@
 }
 .pannel-apps {
     border-left: 1px solid var(--gray);
+    width:100px;
 }
 .pannel-apps .link{
     text-align: center;
@@ -16,6 +17,7 @@
     width: 50px;
     margin: auto;
     padding: 12px 5px;
+    transition: 300ms;
 }
 .pannel{
     display: grid;
@@ -23,10 +25,11 @@
     transition: 500ms;
     background-color: white;
     overflow: hidden;
+    width: 400px !important;
 }.pannel.dark{
     background-color: var(--dark);
 }
-
+ 
 .pannel-apps .links .link .link-icon{
     transition: 500ms;
     font-size: 20px;
@@ -38,6 +41,14 @@
     background-color: rgb(237, 237, 237);
 }.pannel-apps .links .link.dark{
     background-color: rgba(0, 0, 0, 0.584);
+}
+
+/*   active link  */
+.pannel-apps .links .link.active{
+    background-color: var(--light-green);
+}
+.pannel-apps .links .link.active .link-icon{
+    color:var(--green);
 }
 
 /*       logo          */
@@ -52,11 +63,52 @@
 }
 
 /* pannel apps toggle */
+@keyframes slideInOut{
+    0%{
+        display: grid;
+    }
+    100%{
+        display: block;
+    }
+}
 .pannel-apps.hide{
-    transform: translateX(100%);
+    transform: translateX(1000%);
     transition: 500ms;
 }.pannel-apps.show{
     transition: 500ms;
 }.pannel.hide{
-    transform: translateX(20%);
+    transition: 500ms;
+    animation: slideInOut 600ms both;
+}
+
+
+
+
+/* icons */
+.icon-pannel , .icon-pannel-link{
+    background-color: var(--light-green);
+    color: var(--green);
+    width: 40px;
+    padding: 10px;
+    height: 40px;
+    border-radius: 50%;
+    transition: 300ms;
+}
+.icon-pannel:hover , .icon-pannel-link:hover{
+    background-color: rgba(0, 205, 0, 0.355);
+}
+.icon-pannel-link{
+    width: 45px;
+    height: 45px;
+}
+.icon-pannel:active , .icon-pannel-link:active{
+    transform: scale(1.1);
+}
+
+/* media 992px */
+@media only screen and (max-width:992px){
+    .pannel{
+        grid-template-columns: 3fr .4fr;
+        width: 100% !important;
+    }
 }

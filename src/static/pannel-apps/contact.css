@@ -1,0 +1,103 @@
+.contact .contact-info{
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    padding: 30px 10px;
+}
+/*   text info    */
+.contact .contact-info .contact-info-text{
+    font-size: 16px;
+    text-align: right;
+}
+.contact .contact-info .contact-info-text p{
+    color: gray;
+}
+/*   dark mode   */
+.contact .contact-info .contact-info-text.dark{
+    color: white;
+}
+
+/* icons */
+.contact .contact-info .contact-info-icons{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+}
+
+.contact .contact-info .contact-info-icons .icon{
+    background-color: var(--icon-color);
+    color: black;
+    font-size: 20px;
+    border-radius: 50%;
+    padding: 10px 0;
+    font-weight: bolder;
+    transition: 200ms;
+    cursor: pointer;
+}
+.contact .contact-info .contact-info-icons a {
+    text-decoration: none;
+}
+.contact .contact-info .contact-info-icons .icon:hover{
+    transition: 200ms;
+    background-color: var(--icon-hover-color);
+}
+.contact .contact-info .contact-info-icons .icon:active{
+    transform: scale(1.1);
+}
+
+/* users */
+.contact .users {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+.contact .users .user{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    direction: rtl;
+    padding: 8px 5px;
+}
+/*   user image    */
+
+.contact .users .user .user-img img{
+    height: 45px;
+    object-fit: cover;
+    object-position: center;
+    width: 55px;
+    border-radius: 10px;
+}
+
+/* user text info */
+.contact .users .user .user-text{
+    font-size: 10px;
+}
+.contact .users .user .user-text .user-text-top{
+    display: flex; 
+    justify-content: space-between;
+}
+.contact .users .user .user-text .user-text-top h4{
+    font-size: 15px;
+}
+.contact .users .user .user-text .user-text-top p{
+    color: gray;
+}
+
+.contact .users .user .user-text .user-text-middle{
+    font-size: 12px;
+    color: gray;
+    height: 15px;
+    overflow: hidden;
+}
+
+.contact .users .user .user-text .user-text-bottom{
+    font-size: 14px;
+    text-align: left;
+    color: gray;
+}
+.contact .users .user .user-text .user-text-bottom.seen{
+    color: var(--green);
+}
+.contact .users .user .user-text .user-text-bottom.fail{
+    color: red;
+}

@@ -4,7 +4,7 @@ const backgroundSlice = createSlice({
     initialState : {
         mode : "light",
         link : "status",
-        showPannel : true,
+        showPannel : false,
     },
     reducers : {
         changeMode : (state)=>{

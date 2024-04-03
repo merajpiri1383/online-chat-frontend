@@ -8,19 +8,26 @@ import { GoDownload } from "react-icons/go";
 // react router dom 
 import { Link } from "react-router-dom";
 // dark mode 
-import { useSelector } from "react-redux";
+import { useSelector ,useDispatch } from "react-redux";
+// change app 
+import {changeApp} from "../../reducers/pannel";
+// animation 
+import { Slide } from "react-awesome-reveal";
 const Documents = () => {
     const mode = useSelector((state) => state.background.mode);
+    const  dispatch = useDispatch();
     return (
-        <div className="document outlet">
+        <Slide duration={300} direction="left">
+            <div className="document outlet">
             <div className="document-info">
                 <div className={"document-text " + mode}>
                     <h2>اسناد</h2>
                     <p>لیست اسناد و فایلها</p>
                 </div>
                 <div className="document-icons">
-                    <Link  ><CiSearch className={"icon " + mode} /></Link>
-                    <Link to={"/"} ><CiCircleRemove className={"icon " + mode} /></Link>
+                    <Link  ><CiSearch className={"icon-pannel-link " + mode} /></Link>
+                    <Link onClick={()=>dispatch(changeApp("none"))} 
+                    to={"/"} ><CiCircleRemove className={"icon-pannel-link " + mode} /></Link>
                 </div>
             </div>
             <div className="document-files">
@@ -30,7 +37,7 @@ const Documents = () => {
                         <h3>messenger .html</h3>
                         <p>2 فروردین 1401</p>
                     </div>
-                    <div><GoDownload className={"icon " + mode} /></div>
+                    <div><GoDownload className={"icon-pannel " + mode} /></div>
                 </div>
                 <div className="document-file">
                     <div><IoDocumentText className={"icon-file " + mode} /></div>
@@ -38,7 +45,7 @@ const Documents = () => {
                         <h3>messenger .html</h3>
                         <p>2 فروردین 1401</p>
                     </div>
-                    <div><GoDownload className={"icon " + mode} /></div>
+                    <div><GoDownload className={"icon-pannel " + mode} /></div>
                 </div>
                 <div className="document-file">
                     <div><IoDocumentText className={"icon-file " + mode} /></div>
@@ -46,7 +53,7 @@ const Documents = () => {
                         <h3>messenger .html</h3>
                         <p>2 فروردین 1401</p>
                     </div>
-                    <div><GoDownload className={"icon " + mode} /></div>
+                    <div><GoDownload className={"icon-pannel " + mode} /></div>
                 </div>
                 <div className="document-file">
                     <div><IoDocumentText className={"icon-file " + mode} /></div>
@@ -54,7 +61,7 @@ const Documents = () => {
                         <h3>messenger .html</h3>
                         <p>2 فروردین 1401</p>
                     </div>
-                    <div><GoDownload className={"icon " + mode} /></div>
+                    <div><GoDownload className={"icon-pannel " + mode} /></div>
                 </div>
                 <div className="document-file">
                     <div><IoDocumentText className={"icon-file " + mode} /></div>
@@ -62,7 +69,7 @@ const Documents = () => {
                         <h3>messenger .html</h3>
                         <p>2 فروردین 1401</p>
                     </div>
-                    <div><GoDownload className={"icon " + mode} /></div>
+                    <div><GoDownload className={"icon-pannel " + mode} /></div>
                 </div>
                 <div className="document-file">
                     <div><IoDocumentText className={"icon-file " + mode} /></div>
@@ -70,9 +77,10 @@ const Documents = () => {
                         <h3>messenger .html</h3>
                         <p>2 فروردین 1401</p>
                     </div>
-                    <div><GoDownload className={"icon " + mode} /></div>
+                    <div><GoDownload className={"icon-pannel " + mode} /></div>
                 </div>
             </div>
         </div>
+        </Slide>
     )
 }; export default Documents;

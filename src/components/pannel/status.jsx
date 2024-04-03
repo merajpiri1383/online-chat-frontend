@@ -7,62 +7,71 @@ import Image1 from "../../images/b-314.jpg";
 import Image2 from "../../images/b-398.jpg";
 // imports 
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+// change app 
+import { changeApp } from "../../reducers/pannel";
+// animate 
+import { Slide } from "react-awesome-reveal";
 const Status = () => {
-    const mode = useSelector((state)=> state.background.mode) ;
+    const mode = useSelector((state) => state.background.mode);
+    const dispatch = useDispatch();
     return (
-        <div className="status outlet">
-            <div className="status-info-me">
-                <div className="link">
-                <Link to={"/"} className="icon">&times;</Link>
+        <Slide duration={300} direction="left">
+            <div className="status outlet">
+                <div className="status-info-me">
+                    <div className="link">
+                        <Link onClick={() => dispatch(changeApp("none"))} to={"/"}>
+                            <CiCircleRemove className="icon-pannel-link" />
+                        </Link>
+                    </div>
+                    <div className={"text " + mode}>
+                        <h3>وضعیت های من</h3>
+                        <p>برای بروزرسانی وضعیت خود روی علامت (+) کلیک کنید.</p>
+                    </div>
+                    <div><img src={Image1} /></div>
                 </div>
-                <div className={"text " + mode}>
-                    <h3>وضعیت های من</h3> 
-                    <p>برای بروزرسانی وضعیت خود روی علامت (+) کلیک کنید.</p>
+                <div className="updates">
+                    <h3>آخرین بروزرسانی ها</h3>
+                    <div className="users">
+                        <div className="user">
+                            <img src={Image2} />
+                            <div className={"user-text " + mode}>
+                                <h4>سعید مظفری</h4>
+                                <p>امروز ، 8:30 صبح</p>
+                            </div>
+                        </div>
+                        <div className="user">
+                            <img src={Image2} />
+                            <div className={"user-text " + mode}>
+                                <h4>سعید مظفری</h4>
+                                <p>امروز ، 8:30 صبح</p>
+                            </div>
+                        </div>
+                        <div className="user">
+                            <img src={Image2} />
+                            <div className={"user-text " + mode}>
+                                <h4>سعید مظفری</h4>
+                                <p>امروز ، 8:30 صبح</p>
+                            </div>
+                        </div>
+                        <div className="user">
+                            <img src={Image2} />
+                            <div className={"user-text " + mode}>
+                                <h4>سعید مظفری</h4>
+                                <p>امروز ، 8:30 صبح</p>
+                            </div>
+                        </div>
+                        <div className="user">
+                            <img src={Image2} />
+                            <div className={"user-text " + mode}>
+                                <h4>سعید مظفری</h4>
+                                <p>امروز ، 8:30 صبح</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <img src={Image1} />
             </div>
-            <div className="updates">
-                <h3>آخرین بروزرسانی ها</h3>
-                <div className="users">
-                    <div className="user">
-                        <img src={Image2} />
-                        <div className={"user-text " + mode}>
-                            <h4>سعید مظفری</h4>
-                            <p>امروز ، 8:30 صبح</p>
-                        </div>
-                    </div>
-                    <div className="user">
-                        <img src={Image2} />
-                        <div className={"user-text " + mode}>
-                            <h4>سعید مظفری</h4>
-                            <p>امروز ، 8:30 صبح</p>
-                        </div>
-                    </div>
-                    <div className="user">
-                        <img src={Image2} />
-                        <div className={"user-text " + mode}>
-                            <h4>سعید مظفری</h4>
-                            <p>امروز ، 8:30 صبح</p>
-                        </div>
-                    </div>
-                    <div className="user">
-                        <img src={Image2} />
-                        <div className={"user-text " + mode}>
-                            <h4>سعید مظفری</h4>
-                            <p>امروز ، 8:30 صبح</p>
-                        </div>
-                    </div>
-                    <div className="user">
-                        <img src={Image2} />
-                        <div className={"user-text " + mode}>
-                            <h4>سعید مظفری</h4>
-                            <p>امروز ، 8:30 صبح</p>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
+        </Slide>
     )
 }; export default Status;
