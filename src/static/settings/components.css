@@ -1,0 +1,29 @@
+.options{
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap: 10px;
+}
+.options .option {
+    border-top: 1px solid var(--gray);
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding: 30px 10px;
+    align-items: center;
+}
+.options .option .text{
+    font-size: 14px;
+    text-align: right;
+}.options .option .text p{
+    margin: 5px 0;
+    color: gray;
+}
+
+/* components */
+.settings-info{
+    border-top: 1px solid var(--gray);
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    text-align: center;
+    align-items: center;
+}

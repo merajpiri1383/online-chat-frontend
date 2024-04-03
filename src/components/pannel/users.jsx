@@ -38,7 +38,7 @@ const Users = () => {
                         </div>
                         <div className="user-text">
                             <div className="user-text-top">
-                                <h4>الهام جعفری</h4>
+                                <h4 className={mode} >الهام جعفری</h4>
                                 <p>1401/01/01</p>
                             </div>
                             <div className="user-text-middle">
@@ -55,7 +55,7 @@ const Users = () => {
                         </div>
                         <div className="user-text">
                             <div className="user-text-top">
-                                <h4>الهام جعفری</h4>
+                                <h4 className={mode} >الهام جعفری</h4>
                                 <p>1401/01/01</p>
                             </div>
                             <div className="user-text-middle">
@@ -72,7 +72,7 @@ const Users = () => {
                         </div>
                         <div className="user-text">
                             <div className="user-text-top">
-                                <h4>الهام جعفری</h4>
+                                <h4 className={mode} >الهام جعفری</h4>
                                 <p>1401/01/01</p>
                             </div>
                             <div className="user-text-middle">
@@ -89,7 +89,7 @@ const Users = () => {
                         </div>
                         <div className="user-text">
                             <div className="user-text-top">
-                                <h4>الهام جعفری</h4>
+                                <h4 className={mode} >الهام جعفری</h4>
                                 <p>1401/01/01</p>
                             </div>
                             <div className="user-text-middle">

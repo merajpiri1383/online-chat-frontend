@@ -67,6 +67,18 @@
     width: 55px;
     border-radius: 10px;
 }
+@media only screen and (max-width:992px){
+    .contact .users .user .user-img img{
+        height: 90px;
+        width: 110px;
+    }
+}
+@media only screen and (max-width:576px){
+    .contact .users .user .user-img img{
+        height: 65px;
+        width: 75px;
+    }
+}
 
 /* user text info */
 .contact .users .user .user-text{

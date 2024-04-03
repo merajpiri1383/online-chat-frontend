@@ -1,0 +1,33 @@
+/*   top info      */
+.settings .settings-top{
+    display: grid;
+    grid-template-columns: 1fr 3fr ;
+    padding: 30px 15px;
+}
+.settings .settings-top .text{
+    text-align: right;
+}
+.settings .settings-top .text p{
+    margin: 10px 0;
+    color: gray;
+}
+/*   bottom info    */
+.settings .settings-bottom{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+}
+.settings .settings-bottom .text {
+    text-align: right;
+    font-size: 14px;
+}
+.settings .settings-bottom .text p{
+    color: gray;
+}
+.settings .settings-bottom .img img { 
+    width: 70px;
+    height: 60px;
+    border-radius: 20px;
+    object-fit: cover;
+    object-position: center;
+}

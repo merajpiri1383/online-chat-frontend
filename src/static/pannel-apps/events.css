@@ -1,0 +1,60 @@
+/* envent info top */
+.events .events-info {
+    padding: 30px 5px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    text-align: center;
+}
+.events .events-info .events-info-text{
+    text-align: right;
+}
+.events .events-info .events-info-text p{
+    color: gray;
+}
+
+
+
+/*   event          users */
+.events .users {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+.events .users .user{
+    padding: 0 10px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+.events .users .user .text{
+    text-align: right;
+    font-size: 13px;
+    padding-right: 2px;
+}
+.events .users .user .text  p{
+    color: gray;
+}.events .users .user > p {
+    color: gray;
+    font-size: 12px;
+}
+.events .users .user .image{
+    text-align: center;
+}
+.events .users .user .image img{
+    height: 50px;
+    width: 60px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 18px;
+}
+@media only screen and (max-width:992px){
+    .events .users .user .image img{
+        height: 100px;
+        width: 120px;
+    }
+}
+@media only screen and (max-width:576px){
+    .events .users .user .image img{
+        height: 75px;
+        width: 90px;
+    }
+}

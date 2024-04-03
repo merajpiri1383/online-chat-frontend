@@ -68,7 +68,18 @@
     border-radius: 20px;
     object-position: center;
 }
-
+@media only screen and (max-width:992px){
+    .star .star-users .star-user img{
+        height: 100px;
+        width: 120px;
+    }
+}
+@media only screen and (max-width:576px){
+    .star .star-users .star-user img{
+        height: 75px;
+        width: 90px;
+    }
+}
 .star .star-users .star-user .star-user-text p{
     color: gray;
     font-size: 12px;
