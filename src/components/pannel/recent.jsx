@@ -6,13 +6,13 @@ import { changeShowPannel } from "../../reducers/background";
 import { IoIosSearch } from "react-icons/io";
 import { GrAppsRounded } from "react-icons/gr";
 import { FaMessage } from "react-icons/fa6";
-import { IoCall } from "react-icons/io5";
-import { MdGroup } from "react-icons/md";
+import { IoDocuments } from "react-icons/io5";
+import { MdNotificationsActive } from "react-icons/md";
 // reducers 
 import { changeComponent } from "../../reducers/pannel";
 // components  
-import Call from "../pannel_sub/call";
-import Contact from "../pannel_sub/contact";
+import Events from "./events";
+import Infos from "../pannel_sub/infos";
 import Message from "../pannel_sub/message";
 // animation 
 import { Slide } from "react-awesome-reveal";
@@ -44,15 +44,15 @@ const Recent = () => {
                 </div>
                 <div className="recent-buttons">
                     <div className="main-buttons">
-                        <button className={`main-button ${component === "contact" ? "active" : ""}`}
-                            onClick={() => dispatch(changeComponent("contact"))}>
-                            <p>مخاطبین</p>
-                            <MdGroup className="main-button-icon" />
+                    <button className={`main-button ${component === "events" ? "active" : ""}`}
+                            onClick={() => dispatch(changeComponent("events"))}>
+                            <p>اعلان ها</p>
+                            <MdNotificationsActive className="main-button-icon" />
                         </button>
-                        <button className={`main-button ${component === "call" ? "active" : ""}`}
-                            onClick={() => dispatch(changeComponent("call"))}>
-                            <p>تماس</p>
-                            <IoCall className="main-button-icon" />
+                        <button className={`main-button ${component === "infos" ? "active" : ""}`}
+                            onClick={() => dispatch(changeComponent("infos"))}>
+                            <p>اطلاعیه ها </p>
+                            <IoDocuments className="main-button-icon" />
                         </button>
                         <button className={`main-button ${component === "message" ? "active" : ""}`}
                             onClick={() => dispatch(changeComponent("message"))}>
@@ -62,10 +62,10 @@ const Recent = () => {
                     </div>
                 </div>
                 {
-                    component === "contact" ? <Contact /> : ""
+                    component === "infos" ? <Infos /> : ""
                 }
                 {
-                    component === "call" ? <Call /> : ""
+                    component === "events" ? <Events /> : ""
                 }
                 {
                     component === "message" ? <Message /> : ""

@@ -1,0 +1,114 @@
+.message .message-type{
+    padding: 20px 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    gap: 5px;
+}
+.message .message-type p{
+    background-color: var(--icon-color);
+    padding: 10px ;
+    transition: 300ms; 
+    border-radius: 25px;
+    cursor: pointer;
+}
+.message .message-type p.active{
+    color: var(--green);
+    background-color: var(--light-green);
+}
+
+/* content  */
+
+.message-content {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 10px;
+}
+.message-content .user {
+    padding: 15px 10px;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+}
+.message-content .user .user-time {
+    font-size: 12px;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.message-content .user .user-time p.seen{
+    color: var(--green);
+}
+.message-content .user .user-time p.count{
+    background-color: var(--green);
+    color: hsl(0, 0%, 100%);
+    width: 20px;
+    text-align: center;
+    padding: 3px;
+    height: 20px;
+    border-radius: 50%;
+}
+.message-content .user .user-text{
+    text-align: right;
+    padding: 0 5px;
+}
+.message-content .user .user-text p{
+    color: gray;
+    height: 13px;
+    font-size: 13px;
+    margin: 5px 0;
+}
+.message-content .user .user-text p.typing{
+    color: var(--green);
+    height: 13px;
+    font-size: 13px;
+}
+.message-content .user .user-img img {
+    height: 50px;
+    width: 60px;
+    border-radius: 15px;
+    object-fit: cover;
+    object-position: center;
+}
+/* media  992px */
+@media only screen and (max-width:992px){
+    .message-content .user .user-img img {
+        height: 100px;
+        width: 120px;
+    }
+    .message-content .user{
+        padding: 20px;
+    }
+    .message-content .user .user-time {
+        font-size: 15px;
+        padding: 20px 0;
+    }
+    .message-content .user .user-text{
+        font-size: 18px;
+    }
+    .message-content .user .user-text p{
+        height: 30px;
+        font-size: 16px !important;
+    }
+}
+/* media  992px */
+@media only screen and (max-width:576px){
+    .message-content .user .user-img img {
+        height: 75px;
+        width: 90px;
+    }
+    .message-content .user{
+        padding: 15px;
+    }
+    .message-content .user .user-time {
+        font-size: 13px;
+        padding: 15px 0;
+    }
+    .message-content .user .user-text{
+        font-size: 15px;
+    }
+    .message-content .user .user-text p{
+        height: 20px;
+        font-size: 14px !important;
+    }
+}

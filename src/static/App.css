@@ -1,11 +1,11 @@
 @font-face{
   font-family: vazir;
-  src: url("./fonts/Vazir.eot");
-  src: url("./fonts/Vazir-Bold.eot");
+  src: url("./fonts/Vazir.eot"),url("./fonts/Vazir-Bold.eot"),
+  url("./fonts/Vazir-Light-FD-WOL.eot"),url("./fonts/Vazir-Thin-FD-WOL.eot");
 }
 :root{
-  --green : rgb(0, 199, 0);
-  --light-green : rgba(0, 199, 0, 0.159);
+  --green : rgba(44, 119, 0, 0.669);
+  --light-green : rgba(44, 119, 0, 0.141);
   --gray : rgba(128, 128, 128, 0.331);
   --blue : rgb(0,110,255);
   --dark : rgba(0, 0, 0, 0.859);
@@ -30,11 +30,13 @@
   background-color: rgb(32, 32, 32);
 }
 .pannel{
-  width: 25%;
+  width: 400px
 }
 .chat{
-  width: 75%;
+  width: 992px;
   position: relative; 
+  height: auto;
+  height: 100vh;
 }
 h2.dark,p.dark,h3.dark,h4.dark,h5.dark{
   color: white !important;

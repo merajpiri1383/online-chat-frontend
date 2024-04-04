@@ -1,7 +1,6 @@
 import { useSelector , useDispatch } from "react-redux";
 import { changeMode ,changeLink } from "../reducers/background";
 import {changeApp} from "../reducers/pannel";
-import { BiSolidMessageRounded } from "react-icons/bi";
 // icons 
 import { Link , Outlet } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
@@ -12,6 +11,8 @@ import { IoIosNotifications } from "react-icons/io";
 import { MdSettings } from "react-icons/md";
 import { BsFillLightbulbFill } from "react-icons/bs";
 import { CiPower } from "react-icons/ci";
+// logo 
+import Logo from "../static/logo/1711737127-duNm.svg";
 const PannelApps = () => {
     const colorMode = useSelector((state)=> state.background.mode);
     const showPannel = useSelector((state) => state.background.showPannel);
@@ -21,7 +22,7 @@ const PannelApps = () => {
         <div className={`pannel-apps ${showPannel? "show":"hide"}`}>
             <div className={"links "+colorMode}>
             <div className="logo">
-                <BiSolidMessageRounded className="logo-image" />
+                <img src={Logo} className="logo-image" />
             </div>
             <Link className={`link ${colorMode} ${app === "status"?"active":""}`} to={"/status"} 
             onClick={() => dispatch(changeApp("status"))}>

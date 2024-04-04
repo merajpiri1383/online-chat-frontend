@@ -1,10 +1,11 @@
 .top-navbar{
-    margin: 35px 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     background-color: white;
-    position: fixed;
-    width: 900px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
 }
 
 

@@ -1,10 +1,10 @@
 .send-message{
     background-color: white;
     transition: 500ms;
+    position: absolute;
+    right: 0;
+    left: 0;
     bottom: 0;
-    left: 3%;
-    right: 25%;
-    position: fixed;
     padding: 15px;
     display: grid;
     grid-template-columns: 1fr 1fr 10fr 1fr 1fr;
@@ -44,5 +44,5 @@
     background-color: var(--dark);
     direction: rtl;
     padding: 0 10px;
-    color: white;
+    color: white; 
 }

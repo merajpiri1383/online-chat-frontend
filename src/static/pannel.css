@@ -1,38 +1,48 @@
-
-.pannel-apps .links{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-    transition: 500ms;
-}.pannel-apps .links.light{
-    background-color: white;
-}
-.pannel-apps {
-    border-left: 1px solid var(--gray);
-    width:100px;
-}
-.pannel-apps .link{
-    text-align: center;
-    border-radius: 50%;
-    width: 50px;
-    margin: auto;
-    padding: 12px 5px;
-    transition: 300ms;
-}
+/* styling total pannel */
 .pannel{
-    display: grid;
-    grid-template-columns: 3fr 1fr;
+    position: relative;
     transition: 500ms;
     background-color: white;
-    overflow: hidden;
     width: 400px !important;
 }.pannel.dark{
     background-color: var(--dark);
 }
+/* end styling total pannel */
+
+/* pannel apps styling  */
+.pannel-apps {
+    border-left: 1px solid var(--gray);
+    width:100px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+.pannel-apps .links{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    height: 100vh;
+    transition: 500ms;
+    background-color: black;
+}.pannel-apps .links.light{
+    background-color: white;
+}
+.pannel-apps .link{
+    text-align: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: auto;
+    transition: 300ms;
+    align-items: center;
+    padding: 12px;
+}
+
  
 .pannel-apps .links .link .link-icon{
     transition: 500ms;
-    font-size: 20px;
+    font-size: 15px;
 }.pannel-apps .links .link .link-icon.light{
     color: rgb(0, 0, 0);
 }.pannel-apps .links .link .link-icon.dark{
@@ -40,7 +50,7 @@
 }.pannel-apps .links .link.light{
     background-color: rgb(237, 237, 237);
 }.pannel-apps .links .link.dark{
-    background-color: rgba(0, 0, 0, 0.584);
+    background-color: rgb(33, 33, 33);
 }
 
 /*   active link  */
@@ -54,7 +64,7 @@
 /*       logo          */
 .pannel-apps .links .logo{
     text-align: center;
-    padding: 30px 0;
+    padding: 15px 0;
     border-bottom: 1px solid var(--gray);
 }
 .pannel-apps .links .logo .logo-image{
@@ -72,15 +82,11 @@
     }
 }
 .pannel-apps.hide{
-    transform: translateX(1000%);
     transition: 500ms;
+    transform: translateX(100%);
 }.pannel-apps.show{
     transition: 500ms;
-}.pannel.hide{
-    transition: 500ms;
-    animation: slideInOut 600ms both;
 }
-
 
 
 
@@ -88,9 +94,9 @@
 .icon-pannel , .icon-pannel-link{
     background-color: var(--light-green);
     color: var(--green);
-    width: 40px;
+    width: 35px;
     padding: 10px;
-    height: 40px;
+    height: 35px;
     border-radius: 50%;
     transition: 300ms;
 }
@@ -108,7 +114,16 @@
 /* media 992px */
 @media only screen and (max-width:992px){
     .pannel{
-        grid-template-columns: 3fr .4fr;
         width: 100% !important;
     }
+}
+/*  sub pannel  */
+/* for limit hieght and scrolling */
+.sub-pannel{
+    height: 370px;
+    overflow-y: scroll;
+}
+/* every component of icon links have class "outlet" */
+.outlet{
+    height: 100vh;
 }
