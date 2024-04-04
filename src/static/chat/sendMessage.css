@@ -5,6 +5,7 @@
     right: 0;
     left: 0;
     bottom: 0;
+    z-index: 100;
     padding: 15px;
     display: grid;
     grid-template-columns: 1fr 1fr 10fr 1fr 1fr;
@@ -21,7 +22,7 @@
     font-size: 40px;
     padding: 10px;
     margin: 0 10px;
-    border-radius: 50%;
+    border-radius: 50%; 
     transition: 200ms;
 }
 .send-message .icon:hover{
@@ -45,4 +46,4 @@
     direction: rtl;
     padding: 0 10px;
     color: white; 
-}
+} 

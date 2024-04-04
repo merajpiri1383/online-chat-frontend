@@ -9,10 +9,9 @@ import Favorit from "./pannel/favorit";
 import Settings from "./pannel/settings";
 import Users from "./pannel/users";
 import Recent from "./pannel/recent";
+import Login from  "./pannel/login";
 // style 
 import "../static/pannel.css";
-// close pannel 
-import {closePannel} from "../reducers/background";
 const Pannel = () => {
     const background = useSelector((state)=> state.background);
     return (
@@ -27,6 +26,7 @@ const Pannel = () => {
                 <Route path="/favorit" element={<Favorit />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/users" element={<Users />} />
+                <Route path="/login" element={<Login />} />
             </Routes>
             <PannelApps  />
             </BrowserRouter>

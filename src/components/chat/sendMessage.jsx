@@ -11,7 +11,7 @@ import { PiTelegramLogoBold } from "react-icons/pi";
 import { Fade } from "react-awesome-reveal";
 const SendMessage = () => {
     const mode = useSelector((state) => state.background.mode);
-    return (
+    return ( 
         <Fade duration={300}>
             <div className={"send-message " + mode}>
                 <PiTelegramLogoBold className="icon" />
@@ -22,4 +22,4 @@ const SendMessage = () => {
             </div>
         </Fade>
     )
-}; export default SendMessage; 
+}; export default SendMessage;  

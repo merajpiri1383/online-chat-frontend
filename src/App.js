@@ -1,5 +1,5 @@
 import Pannel from "./components/pannel";
-import PannelApps from "./components/pannelApps";
+import Login from "./components/login";
 import Chat from "./components/chat";
 import { useSelector , useDispatch } from "react-redux";
 import "./static/App.css";
@@ -16,6 +16,9 @@ const App = () => {
     <div className={"container " + mode}>
       {
         page ==="chat" ? <Chat /> : ""
+      }
+      {
+        page === "login" ? <Login /> : ""
       }
       {
         page !== "none" && window.screen.width < 992 ? "" : <Pannel />

@@ -4,8 +4,9 @@
     width: 100%;
     padding: 100px 0;
     overflow-y: scroll;
-    height: 600px;
+    height: 90vh;
 }
+
 .messages{
     display: grid;
     grid-template-columns: 1fr;

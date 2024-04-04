@@ -35,7 +35,6 @@
 .chat{
   width: 992px;
   position: relative;  
-  height: auto;
   height: 100vh;
 }
 h2.dark,p.dark,h3.dark,h4.dark,h5.dark{

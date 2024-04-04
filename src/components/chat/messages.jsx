@@ -44,13 +44,13 @@ const Messages = () => {
                     </div>
                     <p className={"message-info-text " + mode}>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
                 </div>
-            </div>
+            </div> 
             <div className="message">
                 <div className="message-user">
                     <img src={Image} />
                 </div>
                 <div className="message-info">
-                    <div className="message-info-top">
+                    <div className="message-info-top"> 
                         <h5 className={mode}>سعید مظفری</h5>
                         <p className={mode}>01:35 صبح</p>
                     </div>
