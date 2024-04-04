@@ -73,14 +73,6 @@
 }
 
 /* pannel apps toggle */
-@keyframes slideInOut{
-    0%{
-        display: grid;
-    }
-    100%{
-        display: block;
-    }
-}
 .pannel-apps.hide{
     transition: 500ms;
     transform: translateX(100%);
@@ -126,4 +118,5 @@
 /* every component of icon links have class "outlet" */
 .outlet{
     height: 100vh;
+    overflow-y: scroll;
 }

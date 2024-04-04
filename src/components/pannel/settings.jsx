@@ -21,14 +21,15 @@ import Chat from "../settings/chat";
 import Account from "../settings/account";
 import Info from "../settings/info";
 import Integrate from "../settings/integrate";
-// react reveal 
+// close pannel 
+import {closePannel} from "../../reducers/background";
 const Settings = () => {
     const mode = useSelector((state) => state.background.mode);
     const current = useSelector((state) => state.settings.current);
     const dispatch = useDispatch();
     return (
         <Slide direction="left" duration={300}>
-            <div className="settings outlet">
+            <div className="settings outlet" onClick={()=> dispatch(closePannel())}>
                 <div className="settings-top">
                     <Link to={"/"} onClick={() => dispatch(changeApp("none"))}>
                         <CiCircleRemove className="icon-pannel-link" />

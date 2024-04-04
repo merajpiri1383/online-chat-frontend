@@ -19,6 +19,10 @@ const backgroundSlice = createSlice({
         },
         changeShowPannel : (state) => {
             state.showPannel = !state.showPannel
+        },
+        closePannel : (state) => {
+            state.showPannel = false
         }
     }
-});export const {changeMode,changeShowPannel} = backgroundSlice.actions;export default backgroundSlice.reducer;
+});export const {changeMode,changeShowPannel,closePannel} = backgroundSlice.actions;
+export default backgroundSlice.reducer;

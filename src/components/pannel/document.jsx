@@ -13,12 +13,14 @@ import { useSelector ,useDispatch } from "react-redux";
 import {changeApp} from "../../reducers/pannel";
 // animation 
 import { Slide } from "react-awesome-reveal";
+// close pannel 
+import {closePannel} from "../../reducers/background";
 const Documents = () => {
     const mode = useSelector((state) => state.background.mode);
     const  dispatch = useDispatch();
     return (
-        <Slide duration={300} direction="left">
-            <div className="document outlet">
+        <Slide duration={300} direction="left" >
+            <div className="document outlet" onClick={()=> dispatch(closePannel())}>
             <div className="document-info">
                 <div className={"document-text " + mode}>
                     <h2>اسناد</h2>

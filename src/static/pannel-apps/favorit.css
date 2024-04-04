@@ -96,15 +96,11 @@
 }
 
 .star .star-users .star-user .star-icon {
-    color: var(--green);
-    font-size: 40px;
-    background-color: var(--light-green);
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 200ms;
+    color: var(--gray) !important;
 }
-
+.star .star-users .star-user .star-icon.active{
+    color: var(--green) !important;
+}
 .star .star-users .star-user .star-icon:hover{
     background-color: rgba(0, 219, 0, 0.437);
     transition: 200ms;

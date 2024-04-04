@@ -11,12 +11,14 @@ import { useSelector, useDispatch } from "react-redux";
 // change app in store
 import { changeApp } from "../../reducers/pannel";
 import Image from "../../images/b-345.jpg";
+// close pannel 
+import {closePannel} from "../../reducers/background";
 const Events = () => {
     const mode = useSelector((state) => state.background.mode);
     const dispatch = useDispatch();
     return (
         <Slide direction="left" duration={300}>
-            <div className="events outlet">
+            <div className="events outlet" onClick={()=> dispatch(closePannel())}>
                 <div className="events-info ">
                     <Link to={"/"} onClick={() => dispatch(changeApp("none"))}>
                         <CiCircleRemove className="icon-pannel-link" />

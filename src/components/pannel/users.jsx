@@ -12,12 +12,14 @@ import Image from "../../images/b-314.jpg";
 import { changeApp } from "../../reducers/pannel";
 // animation 
 import { Slide } from "react-awesome-reveal";
+// close pannel 
+import {closePannel} from "../../reducers/background";
 const Users = () => {
     const mode = useSelector((state) => state.background.mode);
     const dispatch = useDispatch();
     return (
         <Slide direction="left" duration={300}>
-            <div className="contact outlet">
+            <div className="contact outlet" onClick={()=> dispatch(closePannel())}>
                 <div className="contact-info">
                     <div className="contact-info-icons">
                         <Link to={"/"} onClick={() => dispatch(changeApp("none"))} >

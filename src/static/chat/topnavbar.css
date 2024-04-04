@@ -11,7 +11,7 @@
 
 .top-navbar .top-navbar-right{
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 .top-navbar .top-navbar-right .top-navbar-right-left{
@@ -29,6 +29,11 @@
     font-size: 14px;
     direction: rtl;
 }
+
+
+ 
+
+/* to show online or offline */
 .top-navbar .top-navbar-right .top-navbar-right-right .top-navbar-right-right-info .badge{
     background-color: var(--green);
     color: white;
@@ -37,6 +42,10 @@
     text-align: center;
     border-radius: 15px;
 }
+.top-navbar .top-navbar-right .top-navbar-right-right .top-navbar-right-right-info .badge.offline{
+    background-color: crimson;
+}
+
 .top-navbar .top-navbar-right .top-navbar-right-right .top-navbar-right-right-img{
     text-align: center;
 }
@@ -72,4 +81,32 @@
 }
 .top-navbar.dark{
     background-color: var(--dark);
+}
+
+/* media  992px */
+@media only screen and (max-width : 992px){
+    .top-navbar .top-navbar-right .top-navbar-right-right .top-navbar-right-right-img img{
+        height: 50px;
+        width: 70px;
+    }
+    .top-navbar .icon{
+        font-size: 30px;
+        margin: 10px;
+        padding: 10px;
+    }.top-navbar .top-navbar-right{
+        grid-template-columns:  1fr 1fr;
+    }
+}
+
+/* media 500px  */
+@media only screen and (max-width : 500px){
+    .top-navbar .top-navbar-right .top-navbar-right-right .top-navbar-right-right-img img{
+        height: 50px;
+        width: 70px;
+    }
+    .top-navbar .icon{
+        font-size: 30px;
+        margin: 5px;
+        padding: 5px;
+    }
 }

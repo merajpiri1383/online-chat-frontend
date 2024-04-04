@@ -1,5 +1,5 @@
 import { BrowserRouter,Route,Routes } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector  } from "react-redux";
 // components
 import PannelApps from "./pannelApps";
 import Status from "./pannel/status";
@@ -9,11 +9,14 @@ import Favorit from "./pannel/favorit";
 import Settings from "./pannel/settings";
 import Users from "./pannel/users";
 import Recent from "./pannel/recent";
+// style 
 import "../static/pannel.css";
+// close pannel 
+import {closePannel} from "../reducers/background";
 const Pannel = () => {
     const background = useSelector((state)=> state.background);
     return (
-        <div className={`pannel ${background.showPannel?"show":"hide"} ${background.mode}`}>
+        <div className={`pannel ${background.showPannel?"show":"hide"} ${background.mode}`} >
             <BrowserRouter>
             {/* routes for componets  */}
             <Routes>

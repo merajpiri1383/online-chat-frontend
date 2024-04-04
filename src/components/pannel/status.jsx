@@ -12,12 +12,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { changeApp } from "../../reducers/pannel";
 // animate 
 import { Slide } from "react-awesome-reveal";
-const Status = () => {
+// close pannel 
+import {closePannel} from "../../reducers/background";
+const Status = () => { 
     const mode = useSelector((state) => state.background.mode);
     const dispatch = useDispatch();
     return (
         <Slide duration={300} direction="left">
-            <div className="status outlet">
+            <div className="status outlet" onClick={()=> dispatch(closePannel())}>
                 <div className="status-info-me">
                     <div className="link">
                         <Link onClick={() => dispatch(changeApp("none"))} to={"/"}>

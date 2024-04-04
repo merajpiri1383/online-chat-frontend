@@ -12,14 +12,16 @@ import { useSelector, useDispatch } from "react-redux";
 import Image from "../../images/b-382.jpg";
 // change app 
 import { changeApp } from "../../reducers/pannel";
-// animation 
+// animation  
 import { Slide } from "react-awesome-reveal";
+// close pannel 
+import {closePannel} from "../../reducers/background";
 const Star = () => {
     const mode = useSelector((state) => state.background.mode);
     const dispatch = useDispatch();
     return (
         <Slide duration={300} direction="left">
-            <div className="star outlet">
+            <div className="star outlet" onClick={()=> dispatch(closePannel())}>
                 <div className="star-info">
                     <div className={"text " + mode}>
                         <h4>علاقه مندی</h4>
@@ -41,7 +43,7 @@ const Star = () => {
                             <p>تهران ، تهران</p>
                         </div>
                         <div>
-                            <FaStar className="icon-pannel" />
+                            <FaStar className="icon-pannel star-icon" />
                         </div>
                     </div>
                     <div className="star-user">
@@ -51,7 +53,7 @@ const Star = () => {
                             <p>تهران ، تهران</p>
                         </div>
                         <div>
-                            <FaStar className="icon-pannel" />
+                            <FaStar className="icon-pannel star-icon active" />
                         </div>
                     </div>
                     <div className="star-user">
@@ -61,7 +63,7 @@ const Star = () => {
                             <p>تهران ، تهران</p>
                         </div>
                         <div>
-                            <FaStar className="icon-pannel" />
+                            <FaStar className="icon-pannel star-icon" />
                         </div>
                     </div>
                     <div className="star-user">
@@ -71,27 +73,27 @@ const Star = () => {
                             <p>تهران ، تهران</p>
                         </div>
                         <div>
-                            <FaStar className="icon-pannel" />
+                            <FaStar className="icon-pannel star-icon active" />
                         </div>
                     </div>
                     <div className="star-user">
                         <img src={Image} />
-                        <div className={"star-user-text " + mode} >
+                        <div className={"star-user-text" + mode} >
                             <h4>الهام جعفری</h4>
                             <p>تهران ، تهران</p>
                         </div>
                         <div>
-                            <FaStar className="icon-pannel" />
+                            <FaStar className="icon-pannel star-icon" />
                         </div>
                     </div>
                     <div className="star-user">
                         <img src={Image} />
-                        <div className={"star-user-text " + mode} >
+                        <div className={"star-user-text star-icon" + mode} >
                             <h4>الهام جعفری</h4>
                             <p>تهران ، تهران</p>
                         </div>
                         <div>
-                            <FaStar className="icon-pannel" />
+                            <FaStar className="icon-pannel star-icon" />
                         </div>
                     </div>
                 </div>

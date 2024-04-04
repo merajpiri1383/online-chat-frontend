@@ -29,6 +29,10 @@
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
 }
+.message-content .user:hover{
+    background-color: var(--light-green);
+    cursor: pointer;
+}
 .message-content .user .user-time {
     font-size: 12px;
     padding: 10px 0;
