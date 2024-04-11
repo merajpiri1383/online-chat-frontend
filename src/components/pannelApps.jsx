@@ -15,7 +15,11 @@ import { CiPower } from "react-icons/ci";
 // logo 
 import Logo from "../static/logo/1711737127-duNm.svg";
 // tooltip 
-import { Tooltip } from 'react-tooltip'
+import { Tooltip } from 'react-tooltip';
+// coockie 
+import Cookies from "js-cookie";
+
+
 const PannelApps = () => {
     const colorMode = useSelector((state) => state.background.mode);
     const showPannel = useSelector((state) => state.background.showPannel);
@@ -67,7 +71,11 @@ const PannelApps = () => {
                 </a>
                 <Tooltip anchorSelect=".mode" place="left">حالت تاریک</Tooltip>
 
-                <Link className={`power link ${colorMode} ${app === "login" ? "active" : ""}`} to={"/login"}  onClick={() => dispatch(changePage("login"))}>
+                <Link className={`power link ${colorMode} ${app === "login" ? "active" : ""}`} to={"/login"}  onClick={() => {
+                    dispatch(changePage("auth")) ;
+                    Cookies.remove("access");
+                    Cookies.remove("refresh");
+                }}>
                     <CiPower className={"link-icon " + colorMode} />
                 </Link>
                 <Tooltip anchorSelect=".power" place="left">ورود | ثبت نام</Tooltip>

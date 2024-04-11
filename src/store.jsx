@@ -1,17 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
-import background from "./reducers/background";
-import pannel from "./reducers/pannel";
-import settings from "./reducers/settings";
-import messageSubPannel from "./reducers/messageSubPannlel";
-import contact from "./reducers/contact";
-import page from "./reducers/page";
+import backgroundSlice from "./reducers/background";
+import pannelSlice from "./reducers/pannel";
+import settingSlice from "./reducers/settings";
+import messageSubPannleSlice from "./reducers/messageSubPannlel";
+import contactSlice from "./reducers/contact";
+import pageSlice from "./reducers/page";
+import userSlice from "./reducers/user";
 const Store = configureStore({
     reducer : {
-        background : background,
-        pannel : pannel,
-        settings : settings,
-        message_sub_pannel : messageSubPannel,
-        contact : contact ,
-        page : page,
+        background : backgroundSlice,
+        pannel : pannelSlice,
+        settings : settingSlice,
+        message_sub_pannel : messageSubPannleSlice,
+        contact : contactSlice ,
+        page : pageSlice,
+        user : userSlice,
     }
 });export default Store;

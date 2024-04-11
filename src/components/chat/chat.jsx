@@ -1,6 +1,6 @@
-import TopNavbar from "./chat/topNavbar";
-import SendMessage from "./chat/sendMessage";
-import Message from "./chat/messages";
+import TopNavbar from "./topNavbar";
+import SendMessage from "./sendMessage";
+import Message from "./messages";
 const Chat = () => {
     return (
         <div className="chat">

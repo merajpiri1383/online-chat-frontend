@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-const page = createSlice({
+const pageSlice = createSlice({
     name : "page",
     initialState : {
-        current : "chat"
+        current : "auth"
     },
     reducers : {
         changePage : (state,action) => {
             state.current = action.payload 
         }
     }
-});export const {changePage} = page.actions ; export default page.reducer;
+});export const {changePage} = pageSlice.actions ; export default pageSlice.reducer;

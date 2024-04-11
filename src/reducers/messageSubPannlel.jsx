@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const messageSubPannle = createSlice({
+const messageSubPannleSlice = createSlice({
     name : "message_sub_pannel",
     initialState : {
         mode : "personal",
@@ -13,4 +13,4 @@ const messageSubPannle = createSlice({
             state.user = action.payload
         }
     }
-});export const {changeMode,changeUser} = messageSubPannle.actions;export default messageSubPannle.reducer;
+});export const {changeMode,changeUser} = messageSubPannleSlice.actions;export default messageSubPannleSlice.reducer;

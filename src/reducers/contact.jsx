@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const contact = createSlice({
+const contactSlice = createSlice({
     name : "contact",
     initialState : {
         name : null,
@@ -11,4 +11,4 @@ const contact = createSlice({
             state.online = action.payload.online
         }
     }
-});export const {changeContact} = contact.actions;export default contact.reducer ;
+});export const {changeContact} = contactSlice.actions;export default contactSlice.reducer ;

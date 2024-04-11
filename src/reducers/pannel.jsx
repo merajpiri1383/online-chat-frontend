@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const pannel = createSlice({
+const pannelSlice = createSlice({
     name : "pannel",
     initialState : {
         component : "call",
@@ -13,4 +13,4 @@ const pannel = createSlice({
             state.app = action.payload
         }
     }
-});export const {changeComponent , changeApp} = pannel.actions;export default pannel.reducer;
+});export const {changeComponent , changeApp} = pannelSlice.actions;export default pannelSlice.reducer;

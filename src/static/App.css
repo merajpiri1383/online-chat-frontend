@@ -1,7 +1,6 @@
 @font-face{
-  font-family: vazir;
-  src: url("./fonts/Vazir.eot"),url("./fonts/Vazir-Bold.eot"),
-  url("./fonts/Vazir-Light-FD-WOL.eot"),url("./fonts/Vazir-Thin-FD-WOL.eot");
+  font-family: yekan;
+  src: url("fonts/BYekan+.ttf"),url("fonts/BYekan+\ Bold.ttf");
 }
 :root{
   --green : rgba(44, 119, 0, 0.669);
@@ -17,7 +16,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:vazir ,sans-serif;
+  font-family:yekan;
 }
 .container{
   display: flex;

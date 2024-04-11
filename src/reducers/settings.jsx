@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-const settings = createSlice({
+const settingSlice = createSlice({
     name : "settings",
     initialState : {
         current : "none",
@@ -9,4 +9,4 @@ const settings = createSlice({
             state.current = action.payload
         }
     }
-});export const {changeCurrent} = settings.actions;export default settings.reducer;
+});export const {changeCurrent} = settingSlice.actions;export default settingSlice.reducer;

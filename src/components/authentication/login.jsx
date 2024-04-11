@@ -3,7 +3,7 @@ import { Slide } from "react-awesome-reveal";
 // close pannel 
 import { closePannel } from "../../reducers/background";
 // style 
-import "../../static/login/login.css";
+import "../../static/auth/auth.css";
 // react redux 
 import { useSelector, useDispatch } from "react-redux";
 // logo 
@@ -13,8 +13,34 @@ import { FaFacebook } from "react-icons/fa";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { FaTwitter } from "react-icons/fa";
 import { FaApple } from "react-icons/fa";
+// react router dom 
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import API from "../../authentication/auth";
+import axios from "axios";
 const Login = () => {
     const dispatch = useDispatch();
+    const [info,setInfo] = useState({});
+    const form = new FormData();
+    const sendData = async (data) => {
+        await API.post("/auth/login/",data).then(
+            (response) => {console.log(response)},
+        ).catch((error) => {
+            console.log(error)
+            console.log("errorr")
+        })
+        await API.get("/chat/").then((response) => {
+            console.log(response.data)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+    const submitHandeler = (e) => {
+        e.preventDefault();
+        form.append("phone",info.phone);
+        form.append("password",info.password);
+        sendData(form)
+    }
     return (
         <Slide duration={300}>
             <div className="login outlet" onClick={() => dispatch(closePannel())}>
@@ -25,27 +51,31 @@ const Login = () => {
                     <h2>پیام رسان ایمن و سریع</h2>
                     <p>.برای استفاده وارد حساب کاربری خود شوید</p>
                 </div>
-                <form className="login-form">
+                <form className="login-form" method="post" onSubmit={submitHandeler}>
                     <div className="login-form-group">
                         <label className="login-form-group-label">شماره همراه</label>
-                        <input type="text" className="login-form-group-input" placeholder="لطفا شماره همراه خود را وارد کنید" />
+                        <input type="number" min={0} className="login-form-group-input" required max={9999999999}
+                        onChange={(e) => setInfo(Object.assign(info,{phone:e.target.value}))}
+                        placeholder="لطفا شماره همراه خود را وارد کنید" />
                     </div>
                     <div className="login-form-group">
                         <label className="login-form-group-label">رمز ورود</label>
-                        <input type="text" className="login-form-group-input" placeholder="لطفا رمز ورود خود را وارد کنید" />
+                        <input type="password" className="login-form-group-input" required
+                        onChange={(e) => setInfo(Object.assign(info,{password:e.target.value}))}
+                        placeholder="لطفا رمز ورود خود را وارد کنید" />
                     </div>
                     <div className="login-form-caption">
                         <div>
                             <input type="checkbox" />
                             <p>مرا به خاطر بسپار</p>
                         </div>
-                        <a>
-                            فراموشی رمز ورود
-                        </a>
+                        <Link to={"/password/forget"}> فراموشی رمز ورود</Link>
                     </div>
                     <div className="form-buttons">
-                        <button>ورود به سایت</button>
-                        <button>ثبت نام</button>
+                        <button type="submit">ورود به سایت</button>
+                        <button className="form-buttons-register">
+                            <Link to={"/register"}>ثبت نام</Link>
+                        </button>
                     </div>
                     <p className="form-caption">یا ورود با</p>
                     <div className="form-socials">

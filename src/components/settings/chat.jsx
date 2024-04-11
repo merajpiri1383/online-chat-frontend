@@ -1,7 +1,7 @@
 // icon
 import { FaAngleLeft } from "react-icons/fa";
-import { LiaToggleOnSolid } from "react-icons/lia";
-import { LiaToggleOffSolid } from "react-icons/lia";
+// import { LiaToggleOnSolid } from "react-icons/lia";
+// import { LiaToggleOffSolid } from "react-icons/lia";
 // change current component
 import { changeCurrent } from "../../reducers/settings";
 import { useDispatch } from "react-redux";
