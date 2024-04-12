@@ -1,5 +1,5 @@
 .login-page {
-    width: 100%;
+    width: 992px;
     height: 100vh;
 }
 
@@ -92,6 +92,7 @@
     background-color: gray;
     padding: 5px 10px;
     font-size: 18px;
+    cursor: pointer;
     border-radius: 5px;
     border: 0; 
     transition: 200ms;

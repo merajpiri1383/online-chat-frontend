@@ -21,7 +21,7 @@ const App = () => {
   return (
     <div className={"container " + mode}>
       {
-        page === "auth" && !user.islogin ? <Auth /> : ""
+        page === "auth" && <Auth /> 
       }
       {
         page ==="chat" && user.islogin ? <Chat /> : ""

@@ -36,10 +36,10 @@ const Activation = () => {
 
     const sendData = async (data) => {
         await API.post("/auth/verify/",data).then((response) => {
-            toast.success(`شماره شما فعال شد `)
+            user.is_forget_password ? toast.success(`رمز عبور خود را تغییر دهید  `) : toast.success(`شماره شما فعال شد `)
             setToken(response.data.access_token,response.data.refresh_token);
-            dispatch(changeUser({"islogin":true}))
-            navigate("/");
+            dispatch(changeUser({"islogin":true,"is_forget_password":false}))
+            user.is_forget_password ? navigate("/password/reset") : navigate("/activate");
 
 
         }).catch((error) => {
@@ -79,7 +79,9 @@ const Activation = () => {
                             <Link to={"/login"}>ورود به سایت</Link>
                         </button>
                         <button className="form-buttons-register" type="submit">
-                            فعال کردن شماره
+                            {
+                                user.is_forget_password ? "بازیابی رمز عبور" : "فعال کردن شماره"
+                            }
                         </button>
                     </div>
                     <p className="form-caption">یا ورود با</p>

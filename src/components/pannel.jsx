@@ -36,7 +36,7 @@ const Pannel = () => {
                 {
                     page !== "none" && window.screen.width < 992 ? "" : <div>
                         <Routes>
-                            <Route path="/" element={<Recent />} />
+                            <Route path="/" element={user.islogin ? <Recent /> : <Login />} />
                             <Route path="/status" element={<Status />} />
                             <Route path="/document" element={<Document />} />
                             <Route path="/events" element={<Evenets />} />
@@ -48,14 +48,11 @@ const Pannel = () => {
                             <Route path="/register" element={<Register />} />
                             <Route path="/activate" element={<Activation />} />
                             <Route path="/password/forget" element={<ForegetPassword />} />
-                            <Route path="/password/reset/" element={<ResetPassword />} />
+                            <Route path="/password/reset" element={<ResetPassword />} />
                         </Routes>
                     </div>
                 }
                 <PannelApps />
-                {
-                    !user.islogin && <Navigate to={"/login"} />
-                }
             </BrowserRouter>
         </div>
     )

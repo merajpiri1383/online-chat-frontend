@@ -7,6 +7,7 @@ const userSlice = createSlice({
         "phone" : null , 
         "image" : null , 
         "username" : null ,
+        "is_forget_password" : false ,
     },
     reducers : {
         changeUser : (state,action) => {
@@ -15,9 +16,7 @@ const userSlice = createSlice({
             state.phone = action.payload.phone 
             state.image = action.payload.image 
             state.username = action.payload.username
+            state.is_forget_password = action.payload.is_forget_password
         },
-        changePhone : (state,action) => {
-            state.phone = action.payload
-        }
     }
-});export const {changeUser,changePhone} = userSlice.actions ; export default userSlice.reducer ;
+});export const {changeUser} = userSlice.actions ; export default userSlice.reducer ;

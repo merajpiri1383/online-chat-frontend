@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { changeMode } from "../reducers/background";
+import { changeMode,closePannel } from "../reducers/background";
 import { changeApp } from "../reducers/pannel";
 import { changePage } from "../reducers/page";
 // icons 
@@ -75,9 +75,14 @@ const PannelApps = () => {
                 <Tooltip anchorSelect=".mode" place="left">حالت تاریک</Tooltip>
 
                 <Link className={`power link ${colorMode} ${app === "login" ? "active" : ""}`} to={"/login"}  onClick={() => {
-                    dispatch(changePage("auth")) ;
                     Cookies.remove("access");
                     Cookies.remove("refresh");
+                    dispatch(closePannel());
+                    if(window.screen.width < 992){
+                        dispatch(changePage("none"));
+                    }else{
+                        dispatch(changePage("auth")) ;
+                    }
                 }}>
                     <CiPower className={"link-icon " + colorMode} />
                 </Link>
