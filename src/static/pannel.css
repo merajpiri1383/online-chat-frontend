@@ -73,13 +73,32 @@
 }
 
 /* pannel apps toggle */
-.pannel-apps.hide{
-    transition: 500ms;
-    transform: translateX(100%);
-}.pannel-apps.show{
-    transition: 500ms;
+@keyframes hide {
+    0%{
+        transform: translateX(0%);
+    }
+    99%{
+        transform: translateX(100%);
+    }
+    100%{
+        transform: scale(0);
+    }
+    
 }
-
+@keyframes show{
+    0%{
+        transform: scale(1);
+        transform: translateX(100%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+.pannel-apps.hide{
+    animation: both 300ms hide;
+}.pannel-apps.show{
+    animation: both 300ms show;
+}
 
 
 /* icons */
@@ -107,7 +126,10 @@
 @media only screen and (max-width:992px){
     .pannel{
         width: 100% !important;
+        position: absolute;
+        /* overflow: hidden; */
     }
+    
 }
 /*  sub pannel  */
 /* for limit hieght and scrolling */

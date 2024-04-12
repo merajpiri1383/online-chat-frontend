@@ -27,6 +27,9 @@ const PannelApps = () => {
     const dispatch = useDispatch();
     const linkClick = (app) => {
         dispatch(changeApp(app));
+        if(window.screen.width < 992){
+            dispatch(changePage("none"));
+        }
     }
     return (
         <div className={`pannel-apps ${showPannel ? "show" : "hide"}`}>

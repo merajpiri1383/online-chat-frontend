@@ -1,5 +1,5 @@
-import { BrowserRouter,Route,Routes } from "react-router-dom";
-import { useSelector  } from "react-redux";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 // components
 import PannelApps from "./pannelApps";
 import Status from "./pannel/status";
@@ -17,30 +17,46 @@ import ResetPassword from "./authentication/resetPassword";
 import Activation from "./authentication/activation";
 // style 
 import "../static/pannel.css";
+
+
+
+
 const Pannel = () => {
+
     const user = useSelector((state) => state.user);
-    const background = useSelector((state)=> state.background);
+    const background = useSelector((state) => state.background);
+    const page = useSelector((state)=> state.page.current);
+
+
+
     return (
-        <div className={`pannel ${background.showPannel?"show":"hide"} ${background.mode}`} >
+        <div className={`pannel ${background.showPannel ? "show" : "hide"} ${background.mode}`} >
             <BrowserRouter>
-            {/* routes for componets  */}
-            <Routes>
-                <Route path="/" element={ user.islogin ? <Recent /> : <Login /> } />
-                <Route path="/status" element={<Status />} />
-                <Route path="/document" element={<Document />} />
-                <Route path="/events" element={<Evenets />} />
-                <Route path="/favorit" element={<Favorit />} />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/users" element={<Users />} />
-                {/* routes for authentications */}
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/activate" element={<Activation />} />
-                <Route path="/password/forget" element={<ForegetPassword />} />
-                <Route path="/password/reset/" element={<ResetPassword />} />
-            </Routes>
-            <PannelApps  />
+                {/* routes for componets  */}
+                {
+                    page !== "none" && window.screen.width < 992 ? "" : <div>
+                        <Routes>
+                            <Route path="/" element={<Recent />} />
+                            <Route path="/status" element={<Status />} />
+                            <Route path="/document" element={<Document />} />
+                            <Route path="/events" element={<Evenets />} />
+                            <Route path="/favorit" element={<Favorit />} />
+                            <Route path="/settings" element={<Settings />} />
+                            <Route path="/users" element={<Users />} />
+                            {/* routes for authentications */}
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                            <Route path="/activate" element={<Activation />} />
+                            <Route path="/password/forget" element={<ForegetPassword />} />
+                            <Route path="/password/reset/" element={<ResetPassword />} />
+                        </Routes>
+                    </div>
+                }
+                <PannelApps />
+                {
+                    !user.islogin && <Navigate to={"/login"} />
+                }
             </BrowserRouter>
         </div>
     )
-};export default Pannel;
+}; export default Pannel;

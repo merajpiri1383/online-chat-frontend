@@ -21,15 +21,23 @@ import API from "../../authentication/auth";
 import {  useState } from "react";
 // react toastify 
 import { toast} from "react-toastify";
+// cookie
+import { clearToken } from "../../authentication/auth";
+
+
+
+
 const Register = () => {
+
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const [info,setInfo] = useState({});
     const navigate = useNavigate();
     const form = new FormData() ;
+
     const sendData = async (data) => {
         await API.post("/auth/register/",data).then((response) => {
-            toast.success(`کد تایید ارسال شد`)
+            toast.success(`کد تایید ارسال شد`);
             dispatch(changeUser({"phone":info.phone}));
             navigate("/activate");
         }).catch((error) => {
@@ -38,13 +46,16 @@ const Register = () => {
             }
         })
     }
+
     const submitHandeler = (e) => {
+        clearToken();
         e.preventDefault();
         form.append("phone",info.phone);
         form.append("password",info.password);
         form.append("confirm_password",info.confirm_password);
         sendData(form);
     }
+
     return (
         <Slide duration={300}>
             <div className="login outlet" onClick={() => dispatch(closePannel())}>

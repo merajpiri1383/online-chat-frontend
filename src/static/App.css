@@ -1,5 +1,6 @@
 @font-face{
   font-family: yekan;
+  /* src: url("fonts/B\ Koodak\ Bold_0.ttf"),url("fonts/B\ Koodak\ Outline_0.ttf"); */
   src: url("fonts/BYekan+.ttf"),url("fonts/BYekan+\ Bold.ttf");
 }
 :root{

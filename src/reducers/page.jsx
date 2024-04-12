@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const pageSlice = createSlice({
     name : "page",
     initialState : {
-        current : "auth"
+        current : window.screen.width > 992 ? "auth" : "none"
     },
     reducers : {
         changePage : (state,action) => {

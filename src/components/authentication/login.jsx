@@ -14,33 +14,49 @@ import { AiFillGoogleCircle } from "react-icons/ai";
 import { FaTwitter } from "react-icons/fa";
 import { FaApple } from "react-icons/fa";
 // react router dom 
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import { useState } from "react";
 import API from "../../authentication/auth";
-import axios from "axios";
+// cookie 
+import { setToken,clearToken } from "../../authentication/auth";
+// react toastify 
+import { toast } from "react-toastify";
+// change state user 
+import { changeUser } from "../../reducers/user";
+
+
+
 const Login = () => {
+
     const dispatch = useDispatch();
     const [info,setInfo] = useState({});
     const form = new FormData();
+    const navigate = useNavigate(); 
+    
+
     const sendData = async (data) => {
         await API.post("/auth/login/",data).then(
-            (response) => {console.log(response)},
+            (response) => {
+                setToken(response.data.access_token,response.data.refresh_token) ;
+                dispatch(changeUser({"islogin":true}));
+                toast.success("شما با موفقیت وارد شدید ");
+                navigate("/")
+            },
         ).catch((error) => {
-            console.log(error)
-            console.log("errorr")
-        })
-        await API.get("/chat/").then((response) => {
-            console.log(response.data)
-        }).catch((error) => {
-            console.log(error)
+            toast.error(error.response.data[Object.keys(error.response.data)[0]]);
         })
     }
+
+
     const submitHandeler = (e) => {
+        clearToken();
         e.preventDefault();
         form.append("phone",info.phone);
         form.append("password",info.password);
         sendData(form)
     }
+
+
     return (
         <Slide duration={300}>
             <div className="login outlet" onClick={() => dispatch(closePannel())}>

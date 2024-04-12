@@ -123,3 +123,15 @@
     align-items: center;
     justify-content: space-around;
 }
+
+
+/* media 992px  */
+@media only screen and (max-width:992px){
+    .login .login-form .login-form-group{
+        font-size: 20px;
+    }
+    .login .login-form .login-form-group input{
+        font-size: 18px;
+    }
+    
+}
