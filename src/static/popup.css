@@ -1,0 +1,22 @@
+.popup{
+    background-color: white;
+    position: absolute;
+    width: 250px;
+    border-radius: 15px;
+    border: 1px solid gray;
+    text-align: center;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.popup .popup-input{
+    text-align: right;
+    width: 100%;
+    border: 1px solid gray;
+    outline: 0;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 10px;
+}

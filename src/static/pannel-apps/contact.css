@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1.6fr;
     padding: 30px 10px;
+    position: relative;
 }
 /*   text info    */
 .contact .contact-info .contact-info-text{
@@ -18,23 +19,13 @@
 
 /* icons */
 .contact .contact-info .contact-info-icons{
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
+    display: flex; 
+    justify-content: space-between;
     align-items: center;
     text-align: center;
     gap: 5px;
 }
 
-.contact .contact-info .contact-info-icons .icon{
-    background-color: var(--icon-color);
-    color: black;
-    font-size: 20px;
-    border-radius: 50%;
-    padding: 10px 0;
-    font-weight: bolder;
-    transition: 200ms;
-    cursor: pointer;
-}
 .contact .contact-info .contact-info-icons a {
     text-decoration: none;
 }

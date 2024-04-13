@@ -9,12 +9,12 @@ import { useSelector, useDispatch } from "react-redux";
 // logo 
 import Logo from "../../static/logo/1711737127-duNm.svg";
 // icons 
-import { FaFacebook } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa"; 
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { FaTwitter } from "react-icons/fa";
 import { FaApple } from "react-icons/fa";
 // react router dom 
-import { Link , useNavigate} from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import { useState } from "react";
 import API from "../../authentication/auth";
 // cookie 
@@ -31,12 +31,13 @@ const Login = () => {
     const dispatch = useDispatch();
     const [info,setInfo] = useState({});
     const form = new FormData();
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     
 
     const sendData = async (data) => {
         await API.post("/auth/login/",data).then(
             (response) => {
+                console.log("login" + response.data)
                 setToken(response.data.access_token,response.data.refresh_token) ;
                 dispatch(changeUser({"islogin":true}));
                 toast.success("شما با موفقیت وارد شدید ");

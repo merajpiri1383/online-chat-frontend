@@ -1,5 +1,5 @@
 // icon 
-import { CiCircleRemove } from "react-icons/ci";
+import Multiple from "../../static/icons/multiple.svg";
 // style 
 import "../../static/pannel-apps/status.css";
 // image 
@@ -21,16 +21,16 @@ const Status = () => {
         <Slide duration={300} direction="left">
             <div className="status outlet" onClick={()=> dispatch(closePannel())}>
                 <div className="status-info-me">
-                    <div className="link">
+                    <div>
                         <Link onClick={() => dispatch(changeApp("none"))} to={"/"}>
-                            <CiCircleRemove className="icon-pannel-link" />
+                            <img src={Multiple} className="icon-pannel-link" />
                         </Link>
                     </div>
                     <div className={"text " + mode}>
                         <h3>وضعیت های من</h3>
                         <p>برای بروزرسانی وضعیت خود روی علامت (+) کلیک کنید.</p>
                     </div>
-                    <div><img src={Image1} /></div>
+                    <div className="status-info-img"><img src={Image1} /></div>
                 </div>
                 <div className="updates">
                     <h3>آخرین بروزرسانی ها</h3>

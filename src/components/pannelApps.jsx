@@ -18,6 +18,10 @@ import Logo from "../static/logo/1711737127-duNm.svg";
 import { Tooltip } from 'react-tooltip';
 // coockie 
 import Cookies from "js-cookie";
+// react reveal 
+import { Slide } from "react-awesome-reveal";
+
+
 
 
 const PannelApps = () => {
@@ -33,12 +37,11 @@ const PannelApps = () => {
     }
     return (
         <div className={`pannel-apps ${showPannel ? "show" : "hide"}`}>
+            <Slide direction="right" duration={200}>
             <div className={"links " + colorMode}>
                 <div className="logo">
                     <img src={Logo} className="logo-image" />
                 </div>
-
-
                 <Link className={`status link ${colorMode} ${app === "status" ? "active" : ""}`} to={"/status"} onClick={() => linkClick("status")}>
                     <FaUserAlt className={"link-icon " + colorMode} />
                 </Link>
@@ -88,6 +91,7 @@ const PannelApps = () => {
                 </Link>
                 <Tooltip anchorSelect=".power" place="left">ورود | ثبت نام</Tooltip>
             </div>
+            </Slide>
         </div>
     )
 }; export default PannelApps;

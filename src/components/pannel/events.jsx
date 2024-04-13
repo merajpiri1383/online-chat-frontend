@@ -5,7 +5,7 @@ import { Slide } from "react-awesome-reveal";
 // react router dom 
 import { Link } from "react-router-dom";
 // icon
-import { CiCircleRemove } from "react-icons/ci";
+import Multiple from "../../static/icons/multiple.svg";
 // react redux 
 import { useSelector, useDispatch } from "react-redux";
 // change app in store
@@ -21,7 +21,7 @@ const Events = () => {
             <div className="events outlet" onClick={()=> dispatch(closePannel())}>
                 <div className="events-info ">
                     <Link to={"/"} onClick={() => dispatch(changeApp("none"))}>
-                        <CiCircleRemove className="icon-pannel-link" />
+                        <img src={Multiple} className="icon-pannel-link" />
                     </Link>
                     <div className="events-info-text">
                         <h2 className={mode}>اعلان ها</h2>

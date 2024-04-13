@@ -4,7 +4,7 @@ import { Slide } from "react-awesome-reveal";
 import "../../static/pannel-apps/settings.css";
 import "../../static/settings/components.css";
 // icons 
-import { CiCircleRemove } from "react-icons/ci";
+import Multiple from "../../static/icons/multiple.svg";
 import { FaRegEdit } from "react-icons/fa";
 import { FaAngleLeft } from "react-icons/fa";
 // change app 
@@ -32,7 +32,7 @@ const Settings = () => {
             <div className="settings outlet" onClick={()=> dispatch(closePannel())}>
                 <div className="settings-top">
                     <Link to={"/"} onClick={() => dispatch(changeApp("none"))}>
-                        <CiCircleRemove className="icon-pannel-link" />
+                        <img src={Multiple} className="icon-pannel-link" />
                     </Link>
                     <div className="text">
                         <h2 className={mode}>تنظیمات</h2>

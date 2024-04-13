@@ -37,12 +37,12 @@ const Pannel = () => {
                     page !== "none" && window.screen.width < 992 ? "" : <div>
                         <Routes>
                             <Route path="/" element={user.islogin ? <Recent /> : <Login />} />
-                            <Route path="/status" element={<Status />} />
-                            <Route path="/document" element={<Document />} />
-                            <Route path="/events" element={<Evenets />} />
-                            <Route path="/favorit" element={<Favorit />} />
-                            <Route path="/settings" element={<Settings />} />
-                            <Route path="/users" element={<Users />} />
+                            <Route path="/status" element={user.islogin ? <Status /> : <Login />} />
+                            <Route path="/document" element={user.islogin ? <Document /> : <Login />} />
+                            <Route path="/events" element={user.islogin ? <Evenets /> : <Login />} />
+                            <Route path="/favorit" element={user.islogin ? <Favorit /> : <Login />} />
+                            <Route path="/settings" element={user.islogin ? <Settings /> : <Login />} />
+                            <Route path="/users" element={user.islogin ? <Users /> : <Login />} />
                             {/* routes for authentications */}
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />

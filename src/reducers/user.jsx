@@ -11,7 +11,6 @@ const userSlice = createSlice({
     },
     reducers : {
         changeUser : (state,action) => {
-            console.log(action.payload)
             state.islogin = action.payload.islogin
             state.phone = action.payload.phone 
             state.image = action.payload.image 

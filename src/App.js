@@ -2,12 +2,16 @@ import Pannel from "./components/pannel";
 import Chat from "./components/chat/chat";
 import Auth from "./components/authentication/auth";
 import { useSelector , useDispatch } from "react-redux";
+// style 
 import "./static/App.css";
-// change page 
-import {changePage} from "./reducers/page";
+import "./static/popup.css";
 // react toastify 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// cookies 
+import Cookies from "js-cookie";
+// change user state 
+import { changeUser } from "./reducers/user";
 
 
 
@@ -18,6 +22,10 @@ const App = () => {
   const page = useSelector((state)=> state.page.current);
   const user = useSelector((state)=> state.user) ;
   const dispatch = useDispatch() ;
+  if (Cookies.get("access")){
+    dispatch(changeUser({"islogin":true}));
+  }
+
   return (
     <div className={"container " + mode}>
       {

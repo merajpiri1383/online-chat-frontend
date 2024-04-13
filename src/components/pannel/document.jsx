@@ -1,8 +1,8 @@
 // style 
 import "../../static/pannel-apps/documents.css";
 // icons 
-import { CiCircleRemove } from "react-icons/ci";
-import { CiSearch } from "react-icons/ci";
+import Multiple from "../../static/icons/multiple.svg";
+import Search from "../../static/icons/search.svg";
 import { IoDocumentText } from "react-icons/io5";
 import { GoDownload } from "react-icons/go";
 // react router dom 
@@ -27,9 +27,9 @@ const Documents = () => {
                     <p>لیست اسناد و فایلها</p>
                 </div>
                 <div className="document-icons">
-                    <Link  ><CiSearch className={"icon-pannel-link " + mode} /></Link>
+                    <Link  ><img src={Search} className={"icon-pannel-link " + mode} /></Link>
                     <Link onClick={()=>dispatch(changeApp("none"))} 
-                    to={"/"} ><CiCircleRemove className={"icon-pannel-link " + mode} /></Link>
+                    to={"/"} ><img className="icon-pannel-link" src={Multiple} /></Link>
                 </div>
             </div>
             <div className="document-files">

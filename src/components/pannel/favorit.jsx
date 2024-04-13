@@ -1,8 +1,8 @@
 import "../../static/pannel-apps/favorit.css";
 // icons 
-import { CiCircleRemove } from "react-icons/ci";
-import { CiCirclePlus } from "react-icons/ci";
-import { CiSearch } from "react-icons/ci";
+import Search from "../../static/icons/search.svg";
+import Plus from "../../static/icons/plus.svg";
+import Multiple from "../../static/icons/multiple.svg";
 import { FaStar } from "react-icons/fa6";
 // link 
 import { Link } from "react-router-dom";
@@ -29,10 +29,10 @@ const Star = () => {
                     </div>
                     <div className="icons">
                         <Link onClick={() => dispatch(changeApp("none"))} to={"/"} >
-                            <CiCircleRemove className={"icon-pannel-link " + mode} />
+                            <img src={Multiple} className="icon-pannel-link" />
                         </Link>
-                        <Link ><CiCirclePlus className={"icon-pannel-link " + mode} /></Link>
-                        <Link ><CiSearch className={"icon-pannel-link " + mode} /></Link>
+                        <Link ><img src={Plus} className="icon-pannel-link" /></Link>
+                        <Link ><img src={Search} className="icon-pannel-link" /></Link>
                     </div>
                 </div>
                 <div className="star-users">

@@ -3,8 +3,8 @@ import "../../static/pannel-apps/recent.css";
 // icons 
 import { useSelector, useDispatch } from "react-redux";
 import { changeShowPannel } from "../../reducers/background";
-import { IoIosSearch } from "react-icons/io";
-import { GrAppsRounded } from "react-icons/gr";
+import Search from "../../static/icons/search.svg";
+import AllApps from "../../static/icons/AllApps.svg";
 import { FaMessage } from "react-icons/fa6";
 import { IoDocuments } from "react-icons/io5";
 import { MdNotificationsActive } from "react-icons/md";
@@ -25,8 +25,7 @@ const Recent = () => {
             <div className="recent outlet">
                 <div className="recent-info">
                     <div className="recent-info-left">
-                        <GrAppsRounded className={"icon-pannel-link " + mode}
-                            onClick={() => dispatch(changeShowPannel())} />
+                        <img src={AllApps} className="icon-pannel-link" onClick={() => dispatch(changeShowPannel())} />
                     </div>
                     <div className={"recent-info-right " + mode}>
                         <h2 className={mode}>اخیر</h2>
@@ -35,7 +34,7 @@ const Recent = () => {
                 </div>
                 <div className="recent-info">
                     <div className="recent-info-left">
-                        <IoIosSearch className={"icon-pannel-link " + mode} />
+                        <img src={Search} className="icon-pannel-link" />
                     </div>
                     <div className="recent-info-right">
                         <h2 className={mode}>گفتگو</h2>

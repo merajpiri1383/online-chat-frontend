@@ -25,18 +25,7 @@ img{
     color: white;
 }
 
-.status-info-me .icon{
-    font-size: 30px;
-    margin: 0 10px;
-    background-color: var(--icon-color);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 300ms;
-    padding: 0 10px;
-    color: black;
-    text-decoration: none;
-}
-.status-info-me img{
+.status-info-me .status-info-img img{
     height: 50px;
     width: 60px;
     object-fit: cover;
@@ -48,7 +37,7 @@ img{
     .status-info-me .text { 
         font-size: 18px;
     }
-    .status-info-me img{
+    .status-info-me .status-info-img img{
         height: 100px;
         width: 120px;
         object-fit: cover;
@@ -71,7 +60,7 @@ img{
 }
 
 
-/*      updates       */
+/*      updates       */ 
 .updates h3{
     background-color: var(--light-green);
     padding: 10px;
