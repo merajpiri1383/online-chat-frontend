@@ -18,15 +18,30 @@ import Message from "../pannel_sub/message";
 import { Slide } from "react-awesome-reveal";
 // image 
 import Image from "../../static/images/Group 25515.png";
+// react router dom 
+import { useNavigate , useLocation } from "react-router-dom";
+// API 
+import API ,{setAccessWhen401} from "../../authentication/auth";
 
 
 
 
 const Recent = () => {
-
+ 
     const mode = useSelector((state) => state.background.mode);
     const component = useSelector((state) => state.pannel.component);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
+    ( async ()=>{
+        await API.get("/profile/").then().catch((error) => {
+            try{
+                if(error.response.status === 401) {
+                    setAccessWhen401(navigate,location.pathname)
+                }
+            }catch(error){console.log(error)}
+        })
+      })()
 
     return (
         <Slide direction="left" duration={300}>

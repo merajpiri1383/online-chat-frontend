@@ -28,7 +28,7 @@ const Account = () => {
                 if(error.response.status === 401) {
                     setAccessWhen401(navigate,location.pathname)
                 }
-            }catch(error){console.log(error)}
+            }catch(error){}
         })
     }
 
@@ -52,8 +52,6 @@ const Account = () => {
     useEffect(() => {
         getData();
     },[])
-
-    console.log(user);
 
     return (
         <Slide duration={300} direction="left">

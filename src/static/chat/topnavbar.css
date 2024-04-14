@@ -10,8 +10,8 @@
 
 
 .top-navbar .top-navbar-right{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: space-around;
 }
 
 .top-navbar .top-navbar-right .top-navbar-right-left{
@@ -22,12 +22,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+    gap: 10px;
 }
 .top-navbar .top-navbar-right .top-navbar-right-right .top-navbar-right-right-info{
-    display: grid;
-    grid-template-columns: 1fr ;
-    font-size: 14px;
-    direction: rtl;
+    font-size: 16px;
+    font-weight: 900;
 }
 
 
@@ -68,7 +67,7 @@
     transition: 300ms;
     border-radius: 50%;
     cursor: pointer;
-}
+} 
 .top-navbar .icon:hover{
     background-color: var(--icon-hover-color);
     transition: 300ms;
@@ -109,4 +108,4 @@
         margin: 5px;
         padding: 5px;
     }
-}
+} 

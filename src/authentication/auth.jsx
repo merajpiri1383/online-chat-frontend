@@ -21,7 +21,6 @@ const clearToken = ()=> {
 // API.defaults.withCredentials = true ;
 
 API.interceptors.request.use((config) => {
-    console.log("pre ")
     if(Cookies.get("access")){
         config.headers.Authorization = `Bearer ${Cookies.get("access")}`
     }
@@ -32,11 +31,9 @@ API.interceptors.request.use((config) => {
 const setAccessWhen401 =  (navigate,path) => {
     if(Cookies.get('refresh')){
         API.post("/auth/token/refresh/",{ "refresh" : Cookies.get( "refresh" )}).then( ( response ) => {
-            console.log("active refresh")
             setToken(response.data.access);
             navigate(path);
         } ).catch((error) => {
-            console.log("in active refresh")
             clearToken();
             navigate("/login");
         })

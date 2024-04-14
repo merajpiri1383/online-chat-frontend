@@ -14,11 +14,17 @@ import { changeShowPannel} from "../../reducers/background";
 import { Slide } from "react-awesome-reveal";
 // tooltip 
 import { Tooltip } from 'react-tooltip'
+
+
+
+
 const TopNavbar = () => {
+
     const mode = useSelector((state) => state.background.mode);
-    const contactName = useSelector((state) => state.contact.name);
-    const contactState = useSelector((state)=> state.contact.online)
-    const dispatch = useDispatch()
+    const contact = useSelector((state) => state.contact);
+    const dispatch = useDispatch();
+    console.log(contact);
+
     return (
         <Slide duration={300}>
             <div className={`top-navbar ${mode}`}>
@@ -27,24 +33,31 @@ const TopNavbar = () => {
                 <Tooltip anchorSelect=".more" place="bottom">عملیات سریع</Tooltip>
                 <GrAppsRounded className="icon app" onClick={() => dispatch(changeShowPannel())} />
                 <Tooltip anchorSelect=".app" place="bottom">تمام برنامه ها</Tooltip>
-                <IoVideocam className="icon video" />
+                {/* <IoVideocam className="icon video" />
                 <Tooltip anchorSelect=".video" place="bottom">تماس تصویری سریع</Tooltip>
                 <IoCall className="icon call" />
-                <Tooltip anchorSelect=".call" place="bottom">تماس صوتی سریع</Tooltip>
+                <Tooltip anchorSelect=".call" place="bottom">تماس صوتی سریع</Tooltip> */}
             </div>
             <div className="top-navbar-right">
-                <div className={`top-navbar-right-left ${mode}`}>
+                {/* <div className={`top-navbar-right-left ${mode}`}>
                     <IoIosSearch className="icon" />
                     <FaVolumeHigh className="icon" />
+                </div> */} 
+                <div className={`top-navbar-right-left ${mode}`}>
+
                 </div>
                 <div className="top-navbar-right-right">
                     <div className="top-navbar-right-right-info">
-                        <p className={mode}>{contactName}</p>
-                        <p className={`badge ${contactState? "online":"offline"}`}>
+                        <p className={mode}>
+                            {
+                                contact.username ? contact.username : contact.phone 
+                            }
+                        </p>
+                        {/* <p className={`badge ${contactState? "online":"offline"}`}>
                             {
                                 contactState ? "آنلاین" : "آفلاین"
                             }
-                        </p>
+                        </p> */}
                     </div>
                     <div className="top-navbar-right-right-img"><img src={Image} /></div>
                 </div>
@@ -52,4 +65,4 @@ const TopNavbar = () => {
         </div>
         </Slide>
     )
-}; export default TopNavbar;
+}; export default TopNavbar; 

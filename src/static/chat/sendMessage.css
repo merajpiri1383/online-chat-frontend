@@ -8,7 +8,7 @@
     z-index: 100;
     padding: 15px;
     display: grid;
-    grid-template-columns: 1fr 1fr 10fr 1fr 1fr;
+    grid-template-columns: 1fr  10fr  1fr;
 }
 /* dark mode  */
 .send-message.dark{
@@ -39,6 +39,7 @@
     border: 0;
     outline: 0;
     background-color: white;
+    direction: rtl;
 }
 /* dark mode */
 .send-message .message-input.dark{
@@ -46,4 +47,4 @@
     direction: rtl;
     padding: 0 10px;
     color: white; 
-} 
+}  

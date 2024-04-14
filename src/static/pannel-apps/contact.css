@@ -86,7 +86,7 @@
     display: flex; 
     justify-content: space-between;
 }
-.contact .users .user .user-text .user-text-top h4{
+.contact .users .user .user-text .user-text-top h4{ 
     font-size: 15px;
 }
 .contact .users .user .user-text .user-text-top p{
@@ -110,4 +110,4 @@
 }
 .contact .users .user .user-text .user-text-bottom.fail{
     color: red;
-}
+} 

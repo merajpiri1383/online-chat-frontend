@@ -24,8 +24,7 @@ import API, { setAccessWhen401 } from "../../authentication/auth";
 // change contact and page 
 import {changePage} from "../../reducers/page";
 import {changeContact} from "../../reducers/contact";
-// cookie
-import Cookies from "js-cookie";
+
 
 
 
@@ -41,11 +40,26 @@ const Users = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [contacts, setContacts] = useState([]);
+    const [currentUser,setCurrentUser] = useState({});
+
+
+    const getOrCreateChatWithContact = async (withWho) => {
+        await API.post("/chat/",{"with_who" : withWho.id}).then((response) => {
+            dispatch(changeContact({"chat_id" : response.data.id}))
+        }).catch((error) => {
+            try {
+                if (error.response.status === 401) {
+                    setAccessWhen401(navigate, location.pathname);
+                }
+            } catch { }
+        })
+    };
 
 
     const getData = async () => {
         await API.get("/user/contacts/").then((response) => {
-            setContacts(response.data); 
+            setContacts(response.data.contacts);
+            setCurrentUser(response.data);
         }).catch((error) => {
             try {
                 if (error.response.status === 401) {
@@ -56,9 +70,10 @@ const Users = () => {
     };
 
     const userClick = (user) => {
-        console.log({...user});
-        dispatch(changeContact({...user}))
+        console.log(user)
+        dispatch(changeContact({...user,...user.profile}))
         dispatch(changePage("chat"));
+        getOrCreateChatWithContact(user);
     }
 
     useEffect(() => {
@@ -100,7 +115,9 @@ const Users = () => {
                                     </div>
                                     <div className="user-text">
                                         <div className="user-text-top">
-                                            <h4 className={mode} >{contact.phone}</h4>
+                                            <h4 className={mode} >
+                                                {contact.profile.username ? contact.profile.username : contact.phone}
+                                            </h4>
                                             {/* <p>1401/01/01</p> */}
                                         </div>
                                         {/* <div className="user-text-middle">

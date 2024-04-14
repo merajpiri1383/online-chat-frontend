@@ -15,13 +15,12 @@ import { changeUser } from "./reducers/user";
 
 
 
+
 const App = () => {
 
   const mode = useSelector((state)=> state.background.mode);
   const page = useSelector((state)=> state.page.current);
-  const dispatch = useDispatch() ;
-  const show = useSelector((state) => state.page.showPannel );
-  console.log(show);
+  const dispatch = useDispatch();
 
   if (Cookies.get("access")) {
     dispatch(changeUser({"islogin":true}));

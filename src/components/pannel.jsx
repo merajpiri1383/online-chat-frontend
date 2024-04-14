@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 // components
 import PannelApps from "./pannelApps";
@@ -17,8 +17,6 @@ import ResetPassword from "./authentication/resetPassword";
 import Activation from "./authentication/activation";
 // style 
 import "../static/pannel.css";
-// change show pannel reducer 
-import { changeShowPannel } from "../reducers/page";
 
 
 

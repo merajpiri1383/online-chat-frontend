@@ -2,14 +2,20 @@ import { createSlice } from "@reduxjs/toolkit";
 const contactSlice = createSlice({
     name : "contact",
     initialState : {
-        name : null,
-        online : false,
+        username : null,
         image : null ,
+        id : null ,
+        email : null , 
+        phone : null ,
+        chat_id : null ,
     },
     reducers : {
         changeContact  : (state,action) => {
-            state.name = action.payload.name
-            state.online = action.payload.online
+            state.username = action.payload.username 
+            state.image = action.payload.image 
+            state.id = action.payload.id 
+            state.email = action.payload.email 
+            state.phone = action.payload.phone
         }
     }
 });export const {changeContact} = contactSlice.actions;export default contactSlice.reducer ;
