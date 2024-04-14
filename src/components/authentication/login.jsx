@@ -37,9 +37,9 @@ const Login = () => {
     const sendData = async (data) => {
         await API.post("/auth/login/",data).then(
             (response) => {
-                console.log("login" + response.data)
+                const d = response.data.user.profile
                 setToken(response.data.access_token,response.data.refresh_token) ;
-                dispatch(changeUser({"islogin":true}));
+                dispatch(changeUser({"islogin":true,...response.data.user,email:d.email,image:d.image,id:d.id,username:d.username}));
                 toast.success("شما با موفقیت وارد شدید ");
                 navigate("/")
             },

@@ -39,7 +39,7 @@ const Activation = () => {
             user.is_forget_password ? toast.success(`رمز عبور خود را تغییر دهید  `) : toast.success(`شماره شما فعال شد `)
             setToken(response.data.access_token,response.data.refresh_token);
             dispatch(changeUser({"islogin":true,"is_forget_password":false}))
-            user.is_forget_password ? navigate("/password/reset") : navigate("/activate");
+            user.is_forget_password ? navigate("/password/reset") : navigate("/");
 
 
         }).catch((error) => {

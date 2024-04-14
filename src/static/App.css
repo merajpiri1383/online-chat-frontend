@@ -1,7 +1,6 @@
 @font-face{
-  font-family: yekan;
-  /* src: url("fonts/B\ Koodak\ Bold_0.ttf"),url("fonts/B\ Koodak\ Outline_0.ttf"); */
-  src: url("fonts/BYekan+.ttf"),url("fonts/BYekan+\ Bold.ttf");
+  font-family: kodak;
+  src: url("fonts/B\ Koodak\ Bold_0.ttf"),url("fonts/B\ Koodak\ Outline_0.ttf");
 }
 :root{
   --green : rgba(44, 119, 0, 0.669);
@@ -13,12 +12,14 @@
   --icon-dark-color : rgb(62, 62, 62); 
   --icon-hover-color : rgba(208, 208, 208, 0.861);
 }
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:yekan;
+  font-family:kodak;
 }
+
 .container{
   display: flex;
   overflow: hidden !important;

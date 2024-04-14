@@ -1,16 +1,27 @@
-/* styling total pannel */
-.pannel{
-    position: relative;
-    transition: 500ms;
-    height: 100vh;
+/* media 992px */
+.outlet {
     width: 400px;
     background-color: white;
+    transition: 400ms;
 }
 
-.pannel.dark{
+.pannel.dark .outlet { 
     background-color: var(--dark);
 }
+@media only screen and (max-width:992px){
+    .outlet {
+        width: 100vw;
+    }
 
+    .pannel.show .outlet {
+        display: block;
+    }
+    
+    .pannel.hide .outlet{
+        display: none;
+    }
+    
+}
 /* end styling total pannel */
 
 /* pannel apps styling  */
@@ -30,6 +41,7 @@
     transition: 500ms;
     background-color: black;
     padding: 0 20px;
+    z-index: 10;
 }
 
 .pannel-apps .links.light{
@@ -92,7 +104,7 @@
 
 /* pannel apps toggle */
 .pannel-apps.hide{
-    display: none;
+    display: none; 
 }
 
 .pannel-apps.show{
@@ -125,15 +137,7 @@
     transform: scale(1.1);
 }
 
-/* media 992px */
-@media only screen and (max-width:992px){
-    .pannel{
-        width: 100vw !important;
-        position: absolute;
-        overflow: hidden;
-    }
-    
-}
+
 /*  sub pannel  */
 /* for limit hieght and scrolling */
 .sub-pannel{

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { changeMode,closePannel } from "../reducers/background";
 import { changeApp } from "../reducers/pannel";
-import { changePage } from "../reducers/page";
+import { changePage, changeShowPannel } from "../reducers/page";
 // icons 
 import { Link, Outlet } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
@@ -31,6 +31,7 @@ const PannelApps = () => {
     const dispatch = useDispatch();
     const linkClick = (app) => {
         dispatch(changeApp(app));
+        dispatch(changeShowPannel(true));
         if(window.screen.width < 992){
             dispatch(changePage("none"));
         }

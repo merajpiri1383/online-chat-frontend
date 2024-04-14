@@ -15,14 +15,15 @@ import { changeUser } from "./reducers/user";
 
 
 
-
 const App = () => {
 
   const mode = useSelector((state)=> state.background.mode);
   const page = useSelector((state)=> state.page.current);
-  const user = useSelector((state)=> state.user) ;
   const dispatch = useDispatch() ;
-  if (Cookies.get("access")){
+  const show = useSelector((state) => state.page.showPannel );
+  console.log(show);
+
+  if (Cookies.get("access")) {
     dispatch(changeUser({"islogin":true}));
   }
 
@@ -32,10 +33,10 @@ const App = () => {
         page === "auth" && <Auth /> 
       }
       {
-        page ==="chat" && user.islogin ? <Chat /> : ""
+        page ==="chat" ? <Chat /> : ""
       }
       <Pannel />
-      <ToastContainer  />
+      <ToastContainer draggable={true}  />
     </div>
   )
 };export default App;

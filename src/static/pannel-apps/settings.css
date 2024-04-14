@@ -4,30 +4,88 @@
     grid-template-columns: 1fr 3fr ;
     padding: 30px 15px;
 }
+
 .settings .settings-top .text{
     text-align: right;
 }
+
 .settings .settings-top .text p{
     margin: 10px 0;
     color: gray;
 }
+
 /*   bottom info    */
 .settings .settings-bottom{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     text-align: center;
+    align-items: center;
 }
-.settings .settings-bottom .text {
+
+.settings .settings-bottom .text { 
     text-align: right;
-    font-size: 14px;
+    font-size: 16px;
 }
+
 .settings .settings-bottom .text p{
     color: gray;
 }
+
 .settings .settings-bottom .img img { 
     width: 70px;
     height: 60px;
     border-radius: 20px;
     object-fit: cover;
     object-position: center;
+}
+
+.settings .settings-bottom .img .img-icon{
+    width: 70px;
+    height: 60px;
+}
+
+/* settings content */
+.settings .settings-content{
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap: 15px;
+    direction: rtl;
+}
+
+.settings .settings-content .settings-group{
+    padding: 15px 30px;
+    display: grid;
+    grid-template-columns: 1.5fr 3fr;
+    align-items: center;
+    border-bottom: 1px solid var(--gray);
+}
+
+.settings .settings-content .settings-group .settings-label{
+    font-size: 16px;
+    padding: 5px;
+}
+
+.settings .settings-content .settings-group .settings-input{
+    width: 100%;
+    padding: 5px ;
+    font-size: 14px;
+    outline: 0;
+    border: 1px solid var(--gray);
+    border-radius: 10px;
+}
+
+.settings .settings-content .settings-group .settings-input::file-selector-button{
+    border: 1px solid var(--gray);
+    color: white;
+    background-color: var(--gray);
+}
+
+.settings .settings-content  .settings-button{
+    padding: 5px;
+    border-radius: 10px;
+    background-color: var(--green);
+    border: 1px solid var(--green);
+    color: white;
+    font-size: 16px;
 }

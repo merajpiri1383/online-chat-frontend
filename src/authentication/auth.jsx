@@ -10,7 +10,7 @@ const setToken = (access,refresh=null) => {
     Cookies.set("access",access,{expires:1,secure:true,sameSite:true});
     API.defaults.headers.common.Authorization = `Bearer ${access}`; 
     if(refresh) {
-        Cookies.set("refresh",refresh,{expires:8,secure:true,sameSite:true});
+        Cookies.set("refresh",refresh,{expires:8,secure:true,sameSite:null});
     }
 };
 const clearToken = ()=> {

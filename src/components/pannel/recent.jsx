@@ -16,13 +16,24 @@ import Infos from "../pannel_sub/infos";
 import Message from "../pannel_sub/message";
 // animation 
 import { Slide } from "react-awesome-reveal";
+// image 
+import Image from "../../static/images/Group 25515.png";
+
+
+
+
 const Recent = () => {
+
     const mode = useSelector((state) => state.background.mode);
     const component = useSelector((state) => state.pannel.component);
     const dispatch = useDispatch();
+
     return (
         <Slide direction="left" duration={300}>
             <div className="recent outlet">
+                <div className="recent-image">
+                    <img src={Image} alt="ground" />
+                </div>
                 <div className="recent-info">
                     <div className="recent-info-left">
                         <img src={AllApps} className="icon-pannel-link" onClick={() => dispatch(changeShowPannel())} />
@@ -43,7 +54,7 @@ const Recent = () => {
                 </div>
                 <div className="recent-buttons">
                     <div className="main-buttons">
-                    <button className={`main-button ${component === "events" ? "active" : ""}`}
+                        <button className={`main-button ${component === "events" ? "active" : ""}`}
                             onClick={() => dispatch(changeComponent("events"))}>
                             <p>اعلان ها</p>
                             <MdNotificationsActive className="main-button-icon" />

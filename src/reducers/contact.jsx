@@ -3,7 +3,8 @@ const contactSlice = createSlice({
     name : "contact",
     initialState : {
         name : null,
-        online : false
+        online : false,
+        image : null ,
     },
     reducers : {
         changeContact  : (state,action) => {

@@ -1,22 +1,52 @@
 .popup{
     background-color: white;
     position: absolute;
-    width: 250px;
-    border-radius: 15px;
-    border: 1px solid gray;
-    text-align: center;
     padding: 10px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
+    min-width: 200px;
+    text-align: center;
+    border: 1px solid var(--green);
+    border-radius: 10px;
+}
+
+.popup .popup-title{
+    color: var(--green);
 }
 
 .popup .popup-input{
     text-align: right;
     width: 100%;
-    border: 1px solid gray;
+    border: 1px solid gray; 
     outline: 0;
-    font-size: 16px;
+    font-size: 14px;
     padding: 5px;
+    border-radius: 5px;
+}
+
+.popup .popup-results{
+    max-height: 50vh;
+}
+
+.popup .popup-results .popup-result{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.popup .popup-results .popup-result button{
+    font-size: 10px;
+    color: white;
+    background-color: var(--green);
+    border: 0;
     border-radius: 10px;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.popup .popup-results .popup-result button:hover{
+    background-color: var(--gray);
+}
+
+.popup .popup-results .popup-result button:active{
+    transform: scale(1.05);
 }
