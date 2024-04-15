@@ -6,6 +6,8 @@ import messageSubPannleSlice from "./reducers/messageSubPannlel";
 import contactSlice from "./reducers/contact";
 import pageSlice from "./reducers/page";
 import userSlice from "./reducers/user";
+import messageSlice from "./reducers/message";
+
 const Store = configureStore({
     reducer : {
         background : backgroundSlice,
@@ -15,5 +17,6 @@ const Store = configureStore({
         contact : contactSlice ,
         page : pageSlice,
         user : userSlice,
+        message : messageSlice,
     }
 });export default Store;

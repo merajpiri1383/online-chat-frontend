@@ -1,7 +1,7 @@
 //  style 
 import "../../static/chat/sendMessage.css";
 // get mode of background 
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch  } from "react-redux";
 // icons 
 import { FaRegFaceSmile } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa";
@@ -11,7 +11,13 @@ import { PiTelegramLogoBold } from "react-icons/pi";
 import { Fade } from "react-awesome-reveal";
 import { useState } from "react";
 // API 
-import API from "../../authentication/auth";
+import API,{setAccessWhen401} from "../../authentication/auth";
+// react toastify
+import { toast } from "react-toastify";
+// change contact
+import {changeContact} from "../../reducers/contact";
+import {changeMessageToggle} from "../../reducers/message";
+import { Navigate } from "react-router-dom";
 
 
 const SendMessage = () => {
@@ -19,16 +25,23 @@ const SendMessage = () => {
     const mode = useSelector((state) => state.background.mode);
     const [content,setContent] = useState("");
     const contact = useSelector((state) => state.contact) ;
+    const dispatch = useDispatch();
 
     const sendData = async () => {
-        await API.post(`/chat/${contact.chat_id}/message/create/`).then((response) => {
-            console.log(response.data)
-        }).catch((error)=>{
-            console.log(error)
+        await API.post(`/chat/${contact.chat_id}/message/create/`,{"text":content}).then((response) => {
+            dispatch(changeContact({"chat_id" : response.data.chat,...response.data.create_by,...response.data.create_by.profile}))
+            dispatch(changeMessageToggle());
+        }).catch((error)=>{ 
+            try{
+                if(error.response.status === 401){
+                    return <Navigate to={"/login"} />
+                }
+                toast.error(Object.values(error.response.data)[0][0])
+            }catch{}
         })
         setContent("")
     };
-
+ 
     return (  
         <Fade duration={300}> 
             <form className={"send-message " + mode}>

@@ -23,7 +23,6 @@ const TopNavbar = () => {
     const mode = useSelector((state) => state.background.mode);
     const contact = useSelector((state) => state.contact);
     const dispatch = useDispatch();
-    console.log(contact);
 
     return (
         <Slide duration={300}>

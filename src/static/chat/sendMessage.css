@@ -40,6 +40,7 @@
     outline: 0;
     background-color: white;
     direction: rtl;
+    font-weight: 900;
 }
 /* dark mode */
 .send-message .message-input.dark{

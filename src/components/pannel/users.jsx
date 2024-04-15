@@ -45,7 +45,7 @@ const Users = () => {
 
     const getOrCreateChatWithContact = async (withWho) => {
         await API.post("/chat/",{"with_who" : withWho.id}).then((response) => {
-            dispatch(changeContact({"chat_id" : response.data.id}))
+            dispatch(changeContact({"chat_id" : response.data.id,...response.data.with_who,...response.data.with_who.profile}))
         }).catch((error) => {
             try {
                 if (error.response.status === 401) {
@@ -58,7 +58,7 @@ const Users = () => {
 
     const getData = async () => {
         await API.get("/user/contacts/").then((response) => {
-            setContacts(response.data.contacts);
+            setContacts(response.data.contacts.filter((item)=> item.phone !== response.data.phone));
             setCurrentUser(response.data);
         }).catch((error) => {
             try {
@@ -70,8 +70,6 @@ const Users = () => {
     };
 
     const userClick = (user) => {
-        console.log(user)
-        dispatch(changeContact({...user,...user.profile}))
         dispatch(changePage("chat"));
         getOrCreateChatWithContact(user);
     }
@@ -79,7 +77,6 @@ const Users = () => {
     useEffect(() => {
         getData();
     }, [])
-
 
     return (
         <Slide direction="left" duration={300}>

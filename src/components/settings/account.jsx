@@ -10,6 +10,8 @@ import API, { setAccessWhen401 } from "../../authentication/auth";
 import { useEffect, useState } from "react";
 // react router dom 
 import { useNavigate,useLocation } from "react-router-dom";
+// toast 
+import { toast } from "react-toastify";
 
 
 
@@ -35,6 +37,7 @@ const Account = () => {
     const senddata = async (data) => {
         await API.put("/profile/", data).then((response) => {
             setUser({...response.data})
+            toast.success("تغییرات با موفقیت دخیره شد")
         }).catch((error) => {
             try{
                 if(error.response.status === 401) {

@@ -16,6 +16,7 @@ const contactSlice = createSlice({
             state.id = action.payload.id 
             state.email = action.payload.email 
             state.phone = action.payload.phone
+            state.chat_id = action.payload.chat_id
         }
     }
 });export const {changeContact} = contactSlice.actions;export default contactSlice.reducer ;
