@@ -17,7 +17,7 @@ import { toast } from "react-toastify";
 // change contact
 import {changeContact} from "../../reducers/contact";
 import {changeMessageToggle} from "../../reducers/message";
-import { Navigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const SendMessage = () => {
@@ -26,6 +26,8 @@ const SendMessage = () => {
     const [content,setContent] = useState("");
     const contact = useSelector((state) => state.contact) ;
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const sendData = async () => {
         await API.post(`/chat/${contact.chat_id}/message/create/`,{"text":content}).then((response) => {
@@ -34,9 +36,9 @@ const SendMessage = () => {
         }).catch((error)=>{ 
             try{
                 if(error.response.status === 401){
-                    return <Navigate to={"/login"} />
+                    setAccessWhen401(navigate,location.pathname,dispatch)
                 }
-                toast.error(Object.values(error.response.data)[0][0])
+                toast.error(Object.values(error.response.data)[0])
             }catch{}
         })
         setContent("")

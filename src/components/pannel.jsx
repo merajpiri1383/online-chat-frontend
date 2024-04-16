@@ -30,8 +30,7 @@ const Pannel = () => {
 
 
     return (
-        <div className={`pannel ${background.mode} ${showPannel ? "show" : "hide"}`} >
-            <BrowserRouter> 
+            <div className={`pannel ${background.mode} ${showPannel ? "show" : "hide"}`} >
                 {/* routes for componets  */}
                 <Routes>
                     <Route path="/" element={user.islogin ? <Recent /> : <Login />} />
@@ -49,7 +48,6 @@ const Pannel = () => {
                     <Route path="/password/reset" element={<ResetPassword />} />
                 </Routes>
                 <PannelApps />
-            </BrowserRouter>
-        </div>
+            </div>
     )
 }; export default Pannel;

@@ -1,5 +1,7 @@
 import axios from 'axios';
 import Cookies from "js-cookie";
+import { changePage,changeShowPannel } from '../reducers/page';
+
 
 const API = axios.create({
     baseURL : "http://localhost:8000/",
@@ -28,16 +30,26 @@ API.interceptors.request.use((config) => {
 })
 
 // handling 401 error 
-const setAccessWhen401 =  (navigate,path) => {
+const setAccessWhen401 =  (navigate,path,dispatch=null) => {
+    console.log("setAccessWhen401 working ")
     if(Cookies.get('refresh')){
         API.post("/auth/token/refresh/",{ "refresh" : Cookies.get( "refresh" )}).then( ( response ) => {
             setToken(response.data.access);
+            if (dispatch){
+                window.screen.width > 992 ? dispatch(changePage("chat")) : dispatch(changePage("none"))
+                dispatch(changeShowPannel(true));
+            }
             navigate(path);
         } ).catch((error) => {
             clearToken();
+            delete API.defaults.headers.common.Authorization;
+            if (dispatch){
+                window.screen.width > 992 ? dispatch(changePage("auth")) : dispatch(changePage("none"))
+                dispatch(changeShowPannel(true));
+            }
             navigate("/login");
         })
-    }
+    }navigate("/login")
 };
 
 

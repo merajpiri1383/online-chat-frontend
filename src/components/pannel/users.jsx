@@ -17,7 +17,7 @@ import { Slide, Fade } from "react-awesome-reveal";
 import { closePannel } from "../../reducers/background";
 // react pop up 
 import Popup from "reactjs-popup";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import AddContactPopUp from "../popup/AddContact";
 // API
 import API, { setAccessWhen401 } from "../../authentication/auth";
@@ -76,7 +76,7 @@ const Users = () => {
 
     useEffect(() => {
         getData();
-    }, [])
+    }, [userClick])
 
     return (
         <Slide direction="left" duration={300}>

@@ -41,7 +41,7 @@ const Login = () => {
                 setToken(response.data.access_token,response.data.refresh_token) ;
                 dispatch(changeUser({"islogin":true,...response.data.user,email:d.email,image:d.image,id:d.id,username:d.username}));
                 toast.success("شما با موفقیت وارد شدید ");
-                navigate("/")
+                return navigate("/");
             },
         ).catch((error) => {
             toast.error(error.response.data[Object.keys(error.response.data)[0]]);

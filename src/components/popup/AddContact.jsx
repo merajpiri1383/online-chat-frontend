@@ -8,7 +8,7 @@ import API, { setAccessWhen401 } from "../../authentication/auth";
 import { Fade, Slide } from "react-awesome-reveal";
 // react toastify 
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+
 
 
 
@@ -17,38 +17,66 @@ import { useSelector } from "react-redux";
 const AddContactPopUp = () => {
 
     const [user, setUser] = useState("");
-    const phone = useSelector((state) => state.user.phone) ;
+    const [currentUser,setCurrentUser] = useState({});
     const navigate = useNavigate();
     const [result, setResult] = useState([]);
     const location = useLocation();
 
-    const addContact = async (phone) => {
-
-        await API.post("/user/contacts/",{"phone":phone}).then( (response) => {
-            console.log(response.data)
-            toast.success( phone + ` به مخاطبین افزوده شد  `)
-        } ).catch( (error) => {
-            console.log(error.response.data)
-        } )
-
-    } ;
-
-    useEffect(() => {
-
-        API.get("/user/list/").then((response) => {
-            setResult(response.data.filter((item) => {
-                return item.phone.includes(user) && item.phone !== phone ;
-            }))
+    const getCurrentUser = async () => {
+        await API.get("/profile/").then((response) => {
+            setCurrentUser({...response.data})
         }).catch((error) => {
-            try{
+            try {
                 if (error.response.status === 401) {
                     setAccessWhen401(navigate, location.pathname);
                 }
-            }catch(error){
+            } catch (error) {
                 console.log(error.response.data)
             }
         })
-    }, [user])
+    };
+
+    useEffect(() => {
+        getCurrentUser();
+    },[])
+
+    const getListUser = async () => {
+        await API.get("/user/list/").then((response) => {
+            const users =  response.data.filter((user) => {
+                console.log(user.phone === currentUser.phone)
+                return user.phone !== currentUser.phone;
+            });
+            setResult(users);
+        }).catch((error)=>{
+            try {
+                if (error.response.status === 401) {
+                    setAccessWhen401(navigate, location.pathname);
+                }
+            } catch (error) {
+                console.log(error.response.data)
+            }
+        })
+     };
+
+    
+    const addContact = async (phone) => {
+
+        await API.post("/user/contacts/", { "phone": phone }).then((response) => {
+            
+            toast.success(phone + ` به مخاطبین افزوده شد  `)
+        }).catch((error) => {
+            console.log(error.response.data)
+        })
+
+    };
+
+    useEffect(() => {
+        getListUser();
+            // setResult(response.data.filter((item) => {
+            //     return item.phone.includes(user) && item.phone !== phone ;
+            // }))
+        
+    }, [currentUser,user])
     return (
         <Fade duration={300}>
             <div className="popup">
@@ -61,7 +89,7 @@ const AddContactPopUp = () => {
                                 <Slide duration={200} key={index}>
                                     <div className="popup-result">
                                         <p>{user.phone}</p>
-                                        <button onClick={() => addContact(user.phone) }>افزودن به مخاطبین</button>
+                                        <button onClick={() => addContact(user.phone)}>افزودن به مخاطبین</button>
                                     </div>
                                 </Slide>
                             )
