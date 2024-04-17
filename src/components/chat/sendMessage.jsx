@@ -9,13 +9,13 @@ import { HiMicrophone } from "react-icons/hi2";
 import { PiTelegramLogoBold } from "react-icons/pi";
 // animation 
 import { Fade } from "react-awesome-reveal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // API 
-import API,{setAccessWhen401} from "../../authentication/auth";
+import API,{setAccessWhen401,getCurrentUser} from "../../authentication/auth";
 // react toastify
 import { toast } from "react-toastify";
 // change contact
-import {changeContact} from "../../reducers/contact";
+import {changeContact,contactToggle} from "../../reducers/contact";
 import {changeMessageToggle} from "../../reducers/message";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -28,10 +28,12 @@ const SendMessage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-
+    const [currentUser,setCurrentUser] = useState({});
+ 
     const sendData = async () => {
         await API.post(`/chat/${contact.chat_id}/message/create/`,{"text":content}).then((response) => {
-            dispatch(changeContact({"chat_id" : response.data.chat,...response.data.create_by,...response.data.create_by.profile}))
+            const contact = response.data.with_who === currentUser ? response.data.create_by : response.data.with_who ;
+            dispatch(changeContact({"chat_id" : response.data.chat,...contact,...contact.profile}))
             dispatch(changeMessageToggle());
         }).catch((error)=>{ 
             try{
@@ -41,8 +43,13 @@ const SendMessage = () => {
                 toast.error(Object.values(error.response.data)[0])
             }catch{}
         })
-        setContent("")
+        setContent("");
+        dispatch(contactToggle());
     };
+
+    useEffect(() => {
+        getCurrentUser(setCurrentUser,navigate,location)
+    },[]);
  
     return (  
         <Fade duration={300}> 

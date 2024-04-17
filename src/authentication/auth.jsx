@@ -52,5 +52,30 @@ const setAccessWhen401 =  (navigate,path,dispatch=null) => {
     }navigate("/login")
 };
 
+// get current user 
+const getCurrentUser = async (setCurrentUser,navigate,location) => {
+    await API.get("/profile/").then((response) => {
+        setCurrentUser({...response.data,...response.data.profile});
+    }).catch((error) => {
+        try {
+            if (error.response.status === 401) {
+                setAccessWhen401(navigate, location.pathname);
+            }
+        } catch { }
+    })
+};
 
-export default API ;export {setToken,clearToken,setAccessWhen401};
+const getChats = async (setState,navigate,location) => {
+        await API.get("/chat/").then((response) => {
+            setState(response.data);
+        }).catch((error) => {
+            try {
+                if (error.response.status === 401) {
+                    setAccessWhen401(navigate, location.pathname);
+                }
+            } catch { }
+        })
+    };
+
+
+export default API ;export {setToken,clearToken,setAccessWhen401,getCurrentUser,getChats};

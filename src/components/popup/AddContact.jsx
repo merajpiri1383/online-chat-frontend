@@ -8,6 +8,9 @@ import API, { setAccessWhen401 } from "../../authentication/auth";
 import { Fade, Slide } from "react-awesome-reveal";
 // react toastify 
 import { toast } from "react-toastify";
+// contact reducer 
+import contact, {changeContact, contactToggle} from "../../reducers/contact";
+import { useDispatch } from "react-redux";
 
 
 
@@ -21,6 +24,7 @@ const AddContactPopUp = () => {
     const navigate = useNavigate();
     const [result, setResult] = useState([]);
     const location = useLocation();
+    const dispatch = useDispatch();
 
     const getCurrentUser = async () => {
         await API.get("/profile/").then((response) => {
@@ -43,7 +47,6 @@ const AddContactPopUp = () => {
     const getListUser = async () => {
         await API.get("/user/list/").then((response) => {
             const users =  response.data.filter((user) => {
-                console.log(user.phone === currentUser.phone)
                 return user.phone !== currentUser.phone;
             });
             setResult(users);
@@ -64,17 +67,16 @@ const AddContactPopUp = () => {
         await API.post("/user/contacts/", { "phone": phone }).then((response) => {
             
             toast.success(phone + ` به مخاطبین افزوده شد  `)
+            dispatch(contactToggle());
         }).catch((error) => {
             console.log(error.response.data)
         })
 
     };
 
+
     useEffect(() => {
         getListUser();
-            // setResult(response.data.filter((item) => {
-            //     return item.phone.includes(user) && item.phone !== phone ;
-            // }))
         
     }, [currentUser,user])
     return (

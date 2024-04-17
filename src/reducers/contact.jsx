@@ -8,6 +8,7 @@ const contactSlice = createSlice({
         email : null , 
         phone : null ,
         chat_id : null ,
+        toggle : true ,
     },
     reducers : {
         changeContact  : (state,action) => {
@@ -15,8 +16,11 @@ const contactSlice = createSlice({
             state.image = action.payload.image 
             state.id = action.payload.id 
             state.email = action.payload.email 
-            state.phone = action.payload.phone
-            state.chat_id = action.payload.chat_id
+            state.phone = action.payload.phone 
+            state.chat_id = action.payload.chat_id 
+        },
+        contactToggle : (state) => {
+            state.toggle = !state.toggle
         }
     }
-});export const {changeContact} = contactSlice.actions;export default contactSlice.reducer ;
+});export const {changeContact,contactToggle} = contactSlice.actions;export default contactSlice.reducer ;

@@ -17,13 +17,14 @@ import { Slide, Fade } from "react-awesome-reveal";
 import { closePannel } from "../../reducers/background";
 // react pop up 
 import Popup from "reactjs-popup";
-import { useCallback, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import AddContactPopUp from "../popup/AddContact";
 // API
 import API, { setAccessWhen401 } from "../../authentication/auth";
 // change contact and page 
 import {changePage} from "../../reducers/page";
-import {changeContact} from "../../reducers/contact";
+import {changeContact ,contactToggle} from "../../reducers/contact";
+import { changeMessageToggle } from "../../reducers/message";
 
 
 
@@ -41,18 +42,21 @@ const Users = () => {
     const navigate = useNavigate();
     const [contacts, setContacts] = useState([]);
     const [currentUser,setCurrentUser] = useState({});
+    const toggleContact = useSelector((state)=> state.contact.toggle);
 
 
     const getOrCreateChatWithContact = async (withWho) => {
         await API.post("/chat/",{"with_who" : withWho.id}).then((response) => {
-            dispatch(changeContact({"chat_id" : response.data.id,...response.data.with_who,...response.data.with_who.profile}))
+            const contact = response.data.with_who === currentUser ? response.data.create_by : response.data.with_who ;
+            dispatch(changeContact({"chat_id" : response.data.id,...contact,...contact.profile}));
         }).catch((error) => {
             try {
                 if (error.response.status === 401) {
                     setAccessWhen401(navigate, location.pathname);
                 }
             } catch { }
-        })
+        });
+        dispatch(contactToggle());
     };
 
 
@@ -66,7 +70,7 @@ const Users = () => {
                     setAccessWhen401(navigate, location.pathname);
                 }
             } catch { }
-        })
+        });
     };
 
     const userClick = (user) => {
@@ -76,7 +80,7 @@ const Users = () => {
 
     useEffect(() => {
         getData();
-    }, [userClick])
+    }, [toggleContact])
 
     return (
         <Slide direction="left" duration={300}>
