@@ -4,13 +4,8 @@
     top: 0;
     right: 0;
     left: 0;
-
-}
-
-.top-navbar .top-navbar-content{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    position: relative;
 }
 
 
@@ -62,6 +57,7 @@
 }
 .top-navbar .top-navbar-left{
     padding: 10px;
+    position: relative !important;
 }
 
 .top-navbar .icon{

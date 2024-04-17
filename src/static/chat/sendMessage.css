@@ -1,5 +1,4 @@
 .send-message{
-    background-color: white;
     transition: 500ms;
     position: absolute;
     right: 0;
@@ -7,6 +6,7 @@
     bottom: 0;
     z-index: 100;
     padding: 15px;
+    background-color: white;
     display: grid;
     grid-template-columns: 1fr  10fr  1fr;
 }

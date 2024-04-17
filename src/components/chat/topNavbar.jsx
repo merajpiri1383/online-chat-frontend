@@ -31,9 +31,9 @@ const TopNavbar = () => {
     return (
         <Slide duration={300}>
             <div className={`top-navbar ${mode}`}>
-                <div className="top-navbar-content">
                 <div className="top-navbar-left">
-                    <Popup trigger={<IoMdMore className="icon more" />}>
+                    
+                    <Popup modal nested trigger={ <IoMdMore className="icon more" />}>
                         <MoreNavbar />
                     </Popup>
                     <Tooltip anchorSelect=".more" place="bottom">عملیات سریع</Tooltip>
@@ -71,7 +71,6 @@ const TopNavbar = () => {
                             }
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
         </Slide>

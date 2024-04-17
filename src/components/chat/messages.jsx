@@ -61,7 +61,6 @@ const Messages = () => {
 
 
     useEffect(() => {
-        console.log("getting messages");
         getMessages();
     }, [messageToggle,contactToggle,groupToggle])
 
@@ -70,7 +69,6 @@ const Messages = () => {
             <div className="messages">
                 {
                     messages.map((message, index) => {
-                        console.log(message.create_by)
                         return (
                             <Slide key={index} duration={200}>
 

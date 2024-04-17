@@ -46,7 +46,7 @@ const SendMessage = () => {
                     if(error.response.status === 401){
                         setAccessWhen401(navigate,location.pathname,dispatch)
                     }
-                    toast.error(Object.values(error.response.data)[0])
+                    toast.error(Object.values(error.response.data)[0][0])
                 }catch{}
             })
         }

@@ -94,7 +94,7 @@ const Users = () => {
                             <div><img src={Multiple} className="icon-pannel-link" /></div>
                         </Link>
                         <div>
-                            <Popup trigger={<img src={Plus} className="icon-pannel-link popup-parent" />}>
+                            <Popup modal nested trigger={<img src={Plus} className="icon-pannel-link popup-parent" />}>
                                 <AddContactPopUp />
                             </Popup>
                         </div>

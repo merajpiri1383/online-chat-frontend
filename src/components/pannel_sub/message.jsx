@@ -2,7 +2,7 @@
 import "../../static/sub_pannels/message.css";
 // react redux 
 import { useSelector, useDispatch } from "react-redux";
-import { changeMode, changeUser } from "../../reducers/messageSubPannlel";
+import { changeMode } from "../../reducers/messageSubPannlel";
 import { changeContact, contactToggle } from "../../reducers/contact";
 import { changePage,changeChatType } from "../../reducers/page";
 import { changeMessageToggle } from "../../reducers/message";
@@ -33,29 +33,31 @@ const Message = () => {
     const [currentUser, setCurrentUser] = useState({});
 
 
-    const getOrCreateChatWithContact = async (withWho) => {
-        await API.post("/chat/", { "with_who": withWho.id }).then((response) => {
+    const getOrCreateChatWithContact = async (contact) => {
+        await API.post("/chat/", { "with_who":  contact.id }).then((response) => {
             const contact = response.data.with_who.phone === currentUser.phone ? response.data.create_by : response.data.with_who
             dispatch(changeContact({ "chat_id": response.data.id, ...contact, ...contact.profile }));
             dispatch(changeMessageToggle());
         }).catch((error) => {
-            dispatch(changeMessageToggle());
             try {
                 if (error.response.status === 401) {
                     setAccessWhen401(navigate, location.pathname);
                 }
             } catch { }
+            dispatch(changeMessageToggle());
         });
         dispatch(contactToggle());
+        
     };
 
     
 
     // change state of contact 
-    const userClick = (user) => {
-        getOrCreateChatWithContact(user);
+    const userClick = (chat,contact) => {
+        getOrCreateChatWithContact(contact);
         dispatch(changeChatType("chat"))
         dispatch(changePage("chat"));
+        dispatch(changeContact({"chat_id" : chat.id,...contact,...contact.profile}));
     };
 
 
@@ -83,7 +85,7 @@ const Message = () => {
                                 const lastMessage = chat.messages[chat.messages.length - 1];
                                 const contact = chat.create_by.phone === currentUser.phone ? chat.with_who : chat.create_by
                                 return (
-                                    <div className="user" onClick={() => userClick(contact)} key={index}>
+                                    <div className="user" onClick={() => userClick(chat,contact)} key={index}>
                                         <div className="user-time">
                                             <p className={mode}>{lastMessage.update_date}</p>
                                             <p className="seen">دیده شده</p>
@@ -111,9 +113,9 @@ const Message = () => {
                 </Slide> : ""
             }
             {
-                currentMode === "group" ? <Slide duration={300}>
+                currentMode === "group" && <Slide duration={200}>
                     <Groups />
-                </Slide> : ""
+                </Slide>
             }
         </div>
     )
