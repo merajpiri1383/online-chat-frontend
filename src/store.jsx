@@ -7,6 +7,7 @@ import contactSlice from "./reducers/contact";
 import pageSlice from "./reducers/page";
 import userSlice from "./reducers/user";
 import messageSlice from "./reducers/message";
+import groupSlice from "./reducers/group";
 
 const Store = configureStore({
     reducer : {
@@ -18,5 +19,6 @@ const Store = configureStore({
         page : pageSlice,
         user : userSlice,
         message : messageSlice,
+        group : groupSlice,
     }
 });export default Store;

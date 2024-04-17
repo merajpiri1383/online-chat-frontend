@@ -10,6 +10,8 @@ import { useState, useEffect } from "react";
 // react awesome reveal 
 import { Slide } from "react-awesome-reveal";
 import { useLocation, useNavigate } from "react-router-dom";
+// icons 
+import { FaUser } from "react-icons/fa6";
 
 
 const Messages = () => {
@@ -18,6 +20,9 @@ const Messages = () => {
     const contact = useSelector((state) => state.contact);
     const [messages, setMessages] = useState([]);
     const messageToggle = useSelector((state) => state.message.messagetoggle);
+    const groupToggle = useSelector((state) => state.group.toggle) ;
+    const group = useSelector((state) => state.group);
+    const chatType = useSelector((state) => state.page.chat_type );
     const [currentUser, setCurrentUser] = useState({});
     const navigate = useNavigate();
     const location = useLocation();
@@ -26,15 +31,28 @@ const Messages = () => {
 
 
     const getMessages = async () => {
-        await API.get(`/chat/${contact.chat_id}/`).then((response) => {
-            setMessages(response.data.messages);
-        }).catch((error) => {
-            try {
-                if (error.response.status === 401) {
-                    setAccessWhen401(navigate, location);
-                }
-            } catch { }
-        })
+        if(chatType === "chat"){
+            await API.get(`/chat/${contact.chat_id}/`).then((response) => {
+                setMessages(response.data.messages);
+            }).catch((error) => {
+                try {
+                    if (error.response.status === 401) {
+                        setAccessWhen401(navigate, location);
+                    }
+                } catch { }
+            })
+        }
+        if(chatType === "group") {
+            await API.get(`/group/${group.id}/`).then((response) => {
+                setMessages(response.data.messages);
+            }).catch((error) => {
+                try {
+                    if (error.response.status === 401) {
+                        setAccessWhen401(navigate, location);
+                    }
+                } catch { }
+            })
+        }
     };
 
     useEffect(() => {
@@ -45,20 +63,24 @@ const Messages = () => {
     useEffect(() => {
         console.log("getting messages");
         getMessages();
-    }, [messageToggle,contactToggle])
+    }, [messageToggle,contactToggle,groupToggle])
 
     return (
         <div className="chat-content">
             <div className="messages">
                 {
                     messages.map((message, index) => {
-
+                        console.log(message.create_by)
                         return (
                             <Slide key={index} duration={200}>
 
                                 <div className={`message ${message.create_by.phone === currentUser.phone ? "right-message" : ""}`} >
                                     <div className="message-user">
-                                        <img src={Image} />
+                                        {
+                                            message.create_by.profile.image 
+                                            ? <img src={message.create_by.profile.image} /> 
+                                            : <FaUser />
+                                        }
                                     </div>
                                     <div className="message-info">
                                         <div className="message-info-top">

@@ -29,26 +29,48 @@ const SendMessage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [currentUser,setCurrentUser] = useState({});
+    const chatType = useSelector((state) => state.page.chat_type);
+    const group = useSelector((state) => state.group );
  
     const sendData = async () => {
-        await API.post(`/chat/${contact.chat_id}/message/create/`,{"text":content}).then((response) => {
-            const contact = response.data.with_who === currentUser ? response.data.create_by : response.data.with_who ;
-            dispatch(changeContact({"chat_id" : response.data.chat,...contact,...contact.profile}))
-            dispatch(changeMessageToggle());
-        }).catch((error)=>{ 
-            try{
-                if(error.response.status === 401){
-                    setAccessWhen401(navigate,location.pathname,dispatch)
-                }
-                toast.error(Object.values(error.response.data)[0])
-            }catch{}
-        })
+        const formData = new FormData();
+        formData.append("text",content)
+
+        if(chatType === "chat") {
+            await API.post(`/chat/${contact.chat_id}/message/create/`,formData).then((response) => {
+                const contact = response.data.with_who === currentUser ? response.data.create_by : response.data.with_who ;
+                dispatch(changeContact({"chat_id" : response.data.chat,...contact,...contact.profile}))
+                dispatch(changeMessageToggle());
+            }).catch((error)=>{ 
+                try{
+                    if(error.response.status === 401){
+                        setAccessWhen401(navigate,location.pathname,dispatch)
+                    }
+                    toast.error(Object.values(error.response.data)[0])
+                }catch{}
+            })
+        }
+
+        if(chatType === "group") {
+            formData.append("group",group.id);
+            await API.post("/group/message/create/",formData).then((response) => {
+                console.log(response.data)
+            }).catch((error) => {
+                try{
+                    if(error.response.status === 401){
+                        setAccessWhen401(navigate,location.pathname,dispatch)
+                    }
+                    toast.error(Object.values(error.response.data)[0][0])
+                }catch{}
+            })
+        }
+
         setContent("");
         dispatch(contactToggle());
     };
 
     useEffect(() => {
-        getCurrentUser(setCurrentUser,navigate,location)
+        getCurrentUser(setCurrentUser,navigate,location);
     },[]);
  
     return (  

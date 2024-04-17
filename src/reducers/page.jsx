@@ -3,7 +3,8 @@ const pageSlice = createSlice({
     name : "page",
     initialState : {
         current : window.screen.width > 992 ? "auth" : "none",
-        showPannel : true 
+        showPannel : true ,
+        chat_type : "chat" ,
     },
     reducers : {
         changePage : (state,action) => {
@@ -14,6 +15,9 @@ const pageSlice = createSlice({
         },
         changeShowPannel : (state,action) =>  {
             state.showPannel = action.payload ;
+        },
+        changeChatType : (state,action) => {
+            state.chat_type = action.payload
         }
     }
-});export const {changePage,changeShowPannel} = pageSlice.actions ; export default pageSlice.reducer;
+});export const {changePage,changeShowPannel,changeChatType} = pageSlice.actions ; export default pageSlice.reducer;

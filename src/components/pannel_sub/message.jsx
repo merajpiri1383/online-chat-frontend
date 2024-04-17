@@ -3,17 +3,20 @@ import "../../static/sub_pannels/message.css";
 // react redux 
 import { useSelector, useDispatch } from "react-redux";
 import { changeMode, changeUser } from "../../reducers/messageSubPannlel";
-import { changeContact ,contactToggle} from "../../reducers/contact";
-import { changePage } from "../../reducers/page";
-import {changeMessageToggle} from "../../reducers/message";
+import { changeContact, contactToggle } from "../../reducers/contact";
+import { changePage,changeChatType } from "../../reducers/page";
+import { changeMessageToggle } from "../../reducers/message";
 // animation 
 import { Slide } from "react-awesome-reveal";
 // image 
 import Image from "../../images/b-382.jpg";
 // API 
-import API, { setAccessWhen401,getCurrentUser,getChats } from "../../authentication/auth";
+import API, { setAccessWhen401, getCurrentUser, getChats } from "../../authentication/auth";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import Groups from "./groups";
+
 
 
 
@@ -27,12 +30,13 @@ const Message = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [chats, setChats] = useState();
-    const [currentUser,setCurrentUser] = useState({});
+    const [currentUser, setCurrentUser] = useState({});
+
 
     const getOrCreateChatWithContact = async (withWho) => {
-        await API.post("/chat/",{"with_who" : withWho.id}).then((response) => {
+        await API.post("/chat/", { "with_who": withWho.id }).then((response) => {
             const contact = response.data.with_who.phone === currentUser.phone ? response.data.create_by : response.data.with_who
-            dispatch(changeContact({"chat_id" : response.data.id,...contact,...contact.profile}));
+            dispatch(changeContact({ "chat_id": response.data.id, ...contact, ...contact.profile }));
             dispatch(changeMessageToggle());
         }).catch((error) => {
             dispatch(changeMessageToggle());
@@ -40,21 +44,27 @@ const Message = () => {
                 if (error.response.status === 401) {
                     setAccessWhen401(navigate, location.pathname);
                 }
-            } catch { } 
+            } catch { }
         });
+        dispatch(contactToggle());
     };
+
+    
 
     // change state of contact 
     const userClick = (user) => {
         getOrCreateChatWithContact(user);
+        dispatch(changeChatType("chat"))
         dispatch(changePage("chat"));
-    };    
+    };
 
 
     useEffect(() => {
-        getCurrentUser(setCurrentUser,navigate,location);
-        getChats(setChats,navigate,location);
+        getCurrentUser(setCurrentUser, navigate, location);
+        getChats(setChats, navigate, location);
     }, [])
+
+    
 
 
     return (
@@ -102,44 +112,7 @@ const Message = () => {
             }
             {
                 currentMode === "group" ? <Slide duration={300}>
-                    <div className="message-content">
-                        <div className="user">
-                            <div className="user-time">
-                                <p className="count">35</p>
-                            </div>
-                            <div className="user-text">
-                                <h3 className={mode}>الهام جعفری</h3>
-                                <p>لورم ایپسوم متن ساختگی با </p>
-                            </div>
-                            <div className="user-img">
-                                <img src={Image} />
-                            </div>
-                        </div>
-                        <div className="user">
-                            <div className="user-time">
-                                <p className="count">35</p>
-                            </div>
-                            <div className="user-text">
-                                <h3 className={mode}>الهام جعفری</h3>
-                                <p>لورم ایپسوم متن ساختگی با </p>
-                            </div>
-                            <div className="user-img">
-                                <img src={Image} />
-                            </div>
-                        </div>
-                        <div className="user">
-                            <div className="user-time">
-                                <p className="count">35</p>
-                            </div>
-                            <div className="user-text">
-                                <h3 className={mode}>الهام جعفری</h3>
-                                <p>لورم ایپسوم متن ساختگی با </p>
-                            </div>
-                            <div className="user-img">
-                                <img src={Image} />
-                            </div>
-                        </div>
-                    </div>
+                    <Groups />
                 </Slide> : ""
             }
         </div>

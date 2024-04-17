@@ -116,3 +116,62 @@
         font-size: 14px !important;
     }
 }
+
+.add-group-button{
+    width: 80%;
+    margin: 10px auto;
+}
+.add-group-button button{
+    background-color: var(--green);
+    transition: 200ms;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: 0;
+    border-radius: 10px;
+}
+
+
+/* add group */
+.add-group{
+    padding: 15px;
+    text-align: center;
+    direction: rtl;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5px;
+}
+
+.add-group h3{
+    color: var(--green);
+}
+
+.add-group .add-group-input{
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid gray;
+    outline: 0;
+    transition: 200ms;
+    border-radius: 5px;
+}
+
+.add-group .add-group-input:focus{
+    border: 1px solid var(--green);
+    border-radius: 10px;
+}
+
+.add-group .add-group-button{
+    background-color: var(--green);
+    border: 0;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.add-group .add-group-button:active{
+    border-radius: 10px;
+    background-color: var(--light-green);
+}

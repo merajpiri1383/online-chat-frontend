@@ -6,6 +6,7 @@
     text-align: center;
     border: 1px solid var(--green);
     border-radius: 10px;
+    top: 0;
 }
 
 .popup .popup-title{

@@ -22,7 +22,7 @@ import AddContactPopUp from "../popup/AddContact";
 // API
 import API, { setAccessWhen401 } from "../../authentication/auth";
 // change contact and page 
-import {changePage} from "../../reducers/page";
+import {changePage,changeChatType} from "../../reducers/page";
 import {changeContact ,contactToggle} from "../../reducers/contact";
 import { changeMessageToggle } from "../../reducers/message";
 
@@ -49,6 +49,7 @@ const Users = () => {
         await API.post("/chat/",{"with_who" : withWho.id}).then((response) => {
             const contact = response.data.with_who === currentUser ? response.data.create_by : response.data.with_who ;
             dispatch(changeContact({"chat_id" : response.data.id,...contact,...contact.profile}));
+            dispatch(contactToggle());
         }).catch((error) => {
             try {
                 if (error.response.status === 401) {
@@ -56,7 +57,7 @@ const Users = () => {
                 }
             } catch { }
         });
-        dispatch(contactToggle());
+        dispatch(changeMessageToggle())
     };
 
 
@@ -70,10 +71,12 @@ const Users = () => {
                     setAccessWhen401(navigate, location.pathname);
                 }
             } catch { }
+            dispatch(contactToggle());
         });
     };
 
     const userClick = (user) => {
+        dispatch(changeChatType("chat"))
         dispatch(changePage("chat"));
         getOrCreateChatWithContact(user);
     }
