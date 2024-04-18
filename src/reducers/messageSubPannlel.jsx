@@ -4,6 +4,7 @@ const messageSubPannleSlice = createSlice({
     initialState : {
         mode : "personal",
         user : "none",
+        delete_toggle : false,
     },
     reducers : {
         changeMode : (state,action) => {
@@ -11,6 +12,9 @@ const messageSubPannleSlice = createSlice({
         },
         changeUser : (state,action) => {
             state.user = action.payload
+        },
+        deleteUserToggle : (state) => {
+            state.delete_toggle = !state.delete_toggle
         }
     }
-});export const {changeMode,changeUser} = messageSubPannleSlice.actions;export default messageSubPannleSlice.reducer;
+});export const {changeMode,changeUser,deleteUserToggle} = messageSubPannleSlice.actions;export default messageSubPannleSlice.reducer;

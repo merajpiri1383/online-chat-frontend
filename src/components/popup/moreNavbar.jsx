@@ -5,6 +5,8 @@ import API, { getCurrentUser ,setAccessWhen401 } from "../../authentication/auth
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { changeBlock } from "../../reducers/contact";
+import { changePage , changeShowPannel} from "../../reducers/page";
+import { deleteUserToggle } from "../../reducers/messageSubPannlel";
 
 
 const MoreNavbar = () => {
@@ -42,9 +44,27 @@ const MoreNavbar = () => {
                 if (error.response.status === 401) {
                     setAccessWhen401(navigate, location.pathname);
                 }
-            } catch { }
+            } catch { } 
         })
-    }
+    };
+
+    const deleteChat = async () => {
+        if ( contact.chat_id ) {
+            await API.delete(`/chat/${contact.chat_id}/`).then( ( response ) => { 
+                toast.success("گفتگو با موفقیت حذف شد ");
+                dispatch(deleteUserToggle());
+                window.screen.width > 992 ? dispatch(changePage("auth")) : dispatch(changePage("none")); 
+                dispatch(changeShowPannel(true));
+
+            } ).catch( ( error ) => {
+                try {
+                    if (error.response.status === 401) {
+                        setAccessWhen401(navigate, location.pathname);
+                    }
+                } catch { }
+            } )
+        }
+    };
 
     useEffect(() => {
         getCurrentUser(setCurrentUser, navigate, location);
@@ -70,7 +90,7 @@ const MoreNavbar = () => {
                         {
                             !contact.blocked && <p onClick={() => blockUser()} className="popup-list-item "> مسدود کردن کاربر</p>
                         }
-                        <p className="popup-list-item popup-danger">حذف</p>
+                        <p onClick={()=> deleteChat()} className="popup-list-item popup-danger">حذف</p>
                     </div>
                 }
                 {

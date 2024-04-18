@@ -31,6 +31,7 @@ const Message = () => {
     const location = useLocation();
     const [chats, setChats] = useState();
     const [currentUser, setCurrentUser] = useState({});
+    const deleteUserToggle = useSelector((state) => state.message_sub_pannel.delete_toggle );
 
 
     const getOrCreateChatWithContact = async (contact) => {
@@ -64,7 +65,7 @@ const Message = () => {
     useEffect(() => {
         getCurrentUser(setCurrentUser, navigate, location);
         getChats(setChats, navigate, location);
-    }, [])
+    }, [deleteUserToggle])
 
     
 
@@ -87,7 +88,9 @@ const Message = () => {
                                 return (
                                     <div className="user" onClick={() => userClick(chat,contact)} key={index}>
                                         <div className="user-time">
-                                            <p className={mode}>{lastMessage.update_date}</p>
+                                            <p className={mode}>
+                                                {lastMessage  ? lastMessage.update_date : ""}
+                                            </p>
                                             <p className="seen">دیده شده</p>
                                         </div>
                                         <div className="user-text">
@@ -98,7 +101,7 @@ const Message = () => {
                                             </h3>
                                             <p>
                                                 {
-                                                    lastMessage.text ? lastMessage.text : "file"
+                                                    lastMessage ? lastMessage.text ? lastMessage.text :"file" : ""
                                                 }
                                             </p>
                                         </div>
