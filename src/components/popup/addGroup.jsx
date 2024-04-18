@@ -12,22 +12,25 @@ import { Slide } from "react-awesome-reveal";
 
 
 
+
 const AddGroup = () => {
 
-    const [info, setInfo] = useState({});
+    const [file,setFile] = useState(null);
+    const [groupName,setGroupName] = useState("");
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const submitHandeler = async (e) => {
         const form = new FormData();
-        form.append("name", info.name);
-        form.append("image", info.image);
+        form.append("name", groupName);
+        form.append("image", file);
         e.preventDefault();
         console.log("submit")
         await API.post("/group/", form).then((response) => {
             console.log(response.data)
-            setInfo({})
+            setFile(null);
+            setGroupName("");
             dispatch(groupToggle());
         }).catch((error) => {
             dispatch(groupToggle());
@@ -35,6 +38,7 @@ const AddGroup = () => {
                 if (error.response.status === 401) {
                     setAccessWhen401(navigate, location.pathname);
                 }
+                console.log(error.response.data)
             } catch { }
         })
     };
@@ -47,10 +51,10 @@ const AddGroup = () => {
                 <h3 className="popup-title">افزودن گروه</h3>
 
                 <input type="text" placeholder="نام گروه" className="popup-input" required
-                    onChange={(e) => setInfo(Object.assign(info, { name: e.target.value }))} value={info.name} />
+                    onChange={(e) => setGroupName(e.target.value)} value={groupName} />
 
                 <input type="file" className="popup-input" required accept="image/*"
-                    onChange={(e) => setInfo(Object.assign(info, { image: e.target.files[0] }))} />
+                    onChange={(e) => setFile(e.target.files[0]) }  />
 
                 <button type="submit" className="popup-button">ذخیره</button>
             </form>

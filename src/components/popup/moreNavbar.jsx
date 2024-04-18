@@ -1,12 +1,18 @@
+// API
+import API, { getCurrentUser, setAccessWhen401 } from "../../authentication/auth";
+// react tools 
 import { Slide } from "react-awesome-reveal";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import API, { getCurrentUser ,setAccessWhen401 } from "../../authentication/auth";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+// reducers 
 import { changeBlock } from "../../reducers/contact";
-import { changePage , changeShowPannel} from "../../reducers/page";
+import { changePage, changeShowPannel } from "../../reducers/page";
 import { deleteUserToggle } from "../../reducers/messageSubPannlel";
+// components 
+import AddMemeberGroup from "./addMemberGroup";
+
 
 
 const MoreNavbar = () => {
@@ -19,6 +25,7 @@ const MoreNavbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
+    const [showAddMember, setShowAddMemeber] = useState(false);
 
     const blockUser = async () => {
         console.log("block user")
@@ -35,7 +42,7 @@ const MoreNavbar = () => {
     };
 
     const unBlockUser = async () => {
-        await API.delete("/user/blacklist/",{data:{"phone":contact.phone}}).then((response) => {
+        await API.delete("/user/blacklist/", { data: { "phone": contact.phone } }).then((response) => {
             console.log(response.data)
             dispatch(changeBlock(false));
             toast.success("کاربرد غیر مسدود شد")
@@ -44,25 +51,25 @@ const MoreNavbar = () => {
                 if (error.response.status === 401) {
                     setAccessWhen401(navigate, location.pathname);
                 }
-            } catch { } 
+            } catch { }
         })
     };
 
     const deleteChat = async () => {
-        if ( contact.chat_id ) {
-            await API.delete(`/chat/${contact.chat_id}/`).then( ( response ) => { 
+        if (contact.chat_id) {
+            await API.delete(`/chat/${contact.chat_id}/`).then((response) => {
                 toast.success("گفتگو با موفقیت حذف شد ");
                 dispatch(deleteUserToggle());
-                window.screen.width > 992 ? dispatch(changePage("auth")) : dispatch(changePage("none")); 
+                window.screen.width > 992 ? dispatch(changePage("auth")) : dispatch(changePage("none"));
                 dispatch(changeShowPannel(true));
 
-            } ).catch( ( error ) => {
+            }).catch((error) => {
                 try {
                     if (error.response.status === 401) {
                         setAccessWhen401(navigate, location.pathname);
                     }
                 } catch { }
-            } )
+            })
         }
     };
 
@@ -84,18 +91,23 @@ const MoreNavbar = () => {
                 {
                     chatType === "chat" && <div className="popup-list">
                         {
-                            contact.blocked && <p onClick={() => unBlockUser()} 
-                            className="popup-list-item popup-blue">غیر مسدود کردن کاربر</p>
+                            contact.blocked && <p onClick={() => unBlockUser()}
+                                className="popup-list-item popup-blue">غیر مسدود کردن کاربر</p>
                         }
                         {
                             !contact.blocked && <p onClick={() => blockUser()} className="popup-list-item "> مسدود کردن کاربر</p>
                         }
-                        <p onClick={()=> deleteChat()} className="popup-list-item popup-danger">حذف</p>
+                        <p onClick={() => deleteChat()} className="popup-list-item popup-danger">حذف</p>
                     </div>
                 }
                 {
                     chatType === "group" && <div className="popup-list">
-                        <p className="popup-list-item">افزودن به گروه</p>
+                        {
+                            group.create_by.phone === currentUser.phone && <>
+                                <p onClick={() => setShowAddMemeber(!showAddMember)} className="popup-list-item">افزودن به گروه</p>
+                                <AddMemeberGroup state={showAddMember} />
+                            </>
+                        }
                         <p className="popup-list-item popup-danger">خروج از گروه</p>
                     </div>
                 }

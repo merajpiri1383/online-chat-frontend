@@ -50,15 +50,18 @@
     color: white;
 }
 
-.popup .popup-results{
-    max-height: 50vh;
+.popup-results{
+    max-height: 30vh;
+    overflow-y: scroll;
 }
 
-.popup .popup-results .popup-result{
+.popup-results .popup-result{
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: 5px 0;
     font-size: 18px;
+    color: gray;
+    overflow-x: hidden;
 }
 
 .popup .popup-results .popup-result button{
@@ -72,11 +75,11 @@
     transition: 200ms;
 }
 
-.popup .popup-results .popup-result button:hover{
+.popup-results .popup-result button:hover{
     background-color: var(--gray);
 }
 
-.popup .popup-results .popup-result button:active{
+.popup-results .popup-result button:active{
     transform: scale(1.05);
 }
 
@@ -101,10 +104,35 @@
     box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.123);
 }
 
-.popup .popup-danger{
-    background-color: crimson !important;
+
+@keyframes hide {
+    0%{
+        transform: scale(100%);
+    }
+    99%{
+        transform: scale(0);
+    }
+    100%{
+        display: none;
+    }
 }
 
-.popup .popup-blue{
-    background-color: rgb(0, 110, 255) !important;
+@keyframes show{
+    0%{
+        display: none;
+    }
+    1%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+.popup .popup-hide{
+    animation: hide both 200ms;
+}
+
+.popup .popup-show{
+    animation: show both 200ms;
 }
