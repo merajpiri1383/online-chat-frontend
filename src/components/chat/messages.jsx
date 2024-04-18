@@ -6,12 +6,13 @@ import "../../static/chat/messages.css";
 import { useDispatch, useSelector } from "react-redux";
 // API 
 import API, { setAccessWhen401, getCurrentUser } from "../../authentication/auth";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 // react awesome reveal 
 import { Slide } from "react-awesome-reveal";
 import { useLocation, useNavigate } from "react-router-dom";
 // icons 
 import { FaUser } from "react-icons/fa6";
+// react tools 
 
 
 const Messages = () => {
@@ -20,18 +21,26 @@ const Messages = () => {
     const contact = useSelector((state) => state.contact);
     const [messages, setMessages] = useState([]);
     const messageToggle = useSelector((state) => state.message.messagetoggle);
-    const groupToggle = useSelector((state) => state.group.toggle) ;
+    const groupToggle = useSelector((state) => state.group.toggle);
     const group = useSelector((state) => state.group);
-    const chatType = useSelector((state) => state.page.chat_type );
+    const chatType = useSelector((state) => state.page.chat_type);
     const [currentUser, setCurrentUser] = useState({});
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
-    const contactToggle = useSelector((state) => state.contact.toggle );
+    const contactToggle = useSelector((state) => state.contact.toggle);
+    const endRef = useRef(null);
+
+    const scrollHandeler = () => {
+        setTimeout(() =>{
+            endRef.current?.scrollIntoView({behavior:"smooth"});
+        },[100])
+    };
 
 
     const getMessages = async () => {
-        if(chatType === "chat"){
+        scrollHandeler();
+        if (chatType === "chat") {
             await API.get(`/chat/${contact.chat_id}/`).then((response) => {
                 setMessages(response.data.messages);
             }).catch((error) => {
@@ -42,7 +51,7 @@ const Messages = () => {
                 } catch { }
             })
         }
-        if(chatType === "group") {
+        if (chatType === "group") {
             await API.get(`/group/${group.id}/`).then((response) => {
                 setMessages(response.data.messages);
             }).catch((error) => {
@@ -53,6 +62,7 @@ const Messages = () => {
                 } catch { }
             })
         }
+        
     };
 
     useEffect(() => {
@@ -60,9 +70,13 @@ const Messages = () => {
     }, []);
 
 
+
     useEffect(() => {
         getMessages();
-    }, [messageToggle,contactToggle,groupToggle])
+    }, [messageToggle, contactToggle, groupToggle])
+
+    scrollHandeler();
+
 
     return (
         <div className="chat-content">
@@ -73,11 +87,11 @@ const Messages = () => {
                             <Slide key={index} duration={200}>
 
                                 <div className={`message ${message.create_by.phone === currentUser.phone ? "right-message" : ""}`} >
-                                    <div className="message-user">
+                                    <div ref={messages.length === index + 1 ? endRef : null} className="message-user">
                                         {
-                                            message.create_by.profile.image 
-                                            ? <img src={message.create_by.profile.image} /> 
-                                            : <FaUser />
+                                            message.create_by.profile.image
+                                                ? <img src={message.create_by.profile.image} />
+                                                : <FaUser />
                                         }
                                     </div>
                                     <div className="message-info">

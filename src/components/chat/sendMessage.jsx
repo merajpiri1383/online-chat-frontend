@@ -9,7 +9,7 @@ import { HiMicrophone } from "react-icons/hi2";
 import { PiTelegramLogoBold } from "react-icons/pi";
 // animation 
 import { Fade } from "react-awesome-reveal";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // API 
 import API,{setAccessWhen401,getCurrentUser} from "../../authentication/auth";
 // react toastify
@@ -18,6 +18,9 @@ import { toast } from "react-toastify";
 import {changeContact,contactToggle} from "../../reducers/contact";
 import {changeMessageToggle} from "../../reducers/message";
 import { useLocation, useNavigate } from "react-router-dom";
+// react emoji
+import Picker from "emoji-picker-react";
+
 
 
 const SendMessage = () => {
@@ -68,6 +71,10 @@ const SendMessage = () => {
         setContent("");
         dispatch(contactToggle());
     };
+    
+    const emojiClicked = (event,emojiObject) => {
+        console.log(emojiObject);
+    };
 
     useEffect(() => {
         getCurrentUser(setCurrentUser,navigate,location);
@@ -80,6 +87,7 @@ const SendMessage = () => {
                 {/* <HiMicrophone className="icon" /> */}
                 <input type="text" className={"message-input " + mode} placeholder="پیام خود را اینجا بنویسید..."
                 onChange={(e) => setContent(e.target.value) } value={content} />
+                <Picker onEmojiClick={emojiClicked} />
                 <FaPlus className="icon" />
                 {/* <FaRegFaceSmile className="icon" /> */}
             </form>

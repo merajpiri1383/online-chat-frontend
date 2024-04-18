@@ -10,11 +10,9 @@ const pageSlice = createSlice({
         changePage : (state,action) => {
             state.showPannel = true ;
             if (window.screen.width < 992 && action.payload !== "none") {
-                console.log(2)
                 state.showPannel = false;
             }
             if (window.screen.width < 992 && action.payload === "auth") {
-                console.log(3)
                 state.showPannel = true;
             }
             state.current = action.payload 
