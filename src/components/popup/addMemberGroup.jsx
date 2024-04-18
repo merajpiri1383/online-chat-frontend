@@ -23,14 +23,10 @@ const AddMemeberGroup = ({state}) => {
     const group = useSelector((state) => state.group);
 
 
-    useEffect(() => {
-        getCurrentUser();
-    },[])
-
     const getListUser = async () => {
         await API.get("/user/list/").then((response) => {
             const users =  response.data.filter((user) => {
-                return user.phone !== currentUser.phone && user.phone.includes(phone);
+                return user.phone !== currentUser.phone && user.phone.includes(phone) ;
             });
             setResults(users);
         }).catch((error)=>{
@@ -45,17 +41,26 @@ const AddMemeberGroup = ({state}) => {
     };
 
     const AddGroup = async (user) => {
-        console.log(user)
         await API.post("/group/user/change/",{"group":group.id,"phone":user.phone}).then( ( response ) => { 
-            console.log(response.data);
+            toast.success("کاربر به گروه اضافه شد")
         }).catch( (error) => {
-            console.log(error.response.data)
+            try {
+                if (error.response.status === 401) {
+                    setAccessWhen401(navigate, location.pathname);
+                }
+            } catch (error) {
+                console.log(error.response.data)
+            }
         })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
+        getCurrentUser(setCurrentUser,navigate,location);
+    },[]);
+
+    useEffect(() => {
         getListUser();
-    },[phone])
+    },[phone,currentUser]);
 
     
     return (

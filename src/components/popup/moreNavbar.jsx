@@ -10,6 +10,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { changeBlock } from "../../reducers/contact";
 import { changePage, changeShowPannel } from "../../reducers/page";
 import { deleteUserToggle } from "../../reducers/messageSubPannlel";
+import { groupToggle } from "../../reducers/group";
 // components 
 import AddMemeberGroup from "./addMemberGroup";
 
@@ -82,6 +83,22 @@ const MoreNavbar = () => {
             dispatch(changeBlock(true));
         })
     }
+    const exitUser = async () => {
+        console.log("eist")
+        await API.delete("/group/user/change/",{data:{"group":group.id,"phone":currentUser.phone}}).then( ( response ) => { 
+            dispatch(groupToggle());
+            toast.info("شما از  گروه خارج شدید")
+            dispatch(changePage("auth"));
+        }).catch( (error) => {
+            try {
+                if (error.response.status === 401) {
+                    setAccessWhen401(navigate, location.pathname);
+                }
+            } catch (error) {
+                console.log(error.response.data)
+            }
+        })
+    };
 
 
 
@@ -103,12 +120,11 @@ const MoreNavbar = () => {
                 {
                     chatType === "group" && <div className="popup-list">
                         {
-                            group.create_by.phone === currentUser.phone && <>
+                            group.create_by.phone === currentUser.phone ? <>
                                 <p onClick={() => setShowAddMemeber(!showAddMember)} className="popup-list-item">افزودن به گروه</p>
                                 <AddMemeberGroup state={showAddMember} />
-                            </>
+                            </> : <p onClick={() => exitUser()} className="popup-list-item popup-danger">خروج از گروه</p>
                         }
-                        <p className="popup-list-item popup-danger">خروج از گروه</p>
                     </div>
                 }
             </div>
