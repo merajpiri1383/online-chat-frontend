@@ -8,7 +8,7 @@
     padding: 15px;
     background-color: white;
     display: grid;
-    grid-template-columns: 1fr  10fr  1fr;
+    grid-template-columns: 1fr  10fr  1fr ;
 }
 /* dark mode  */
 .send-message.dark{
@@ -24,6 +24,7 @@
     margin: 0 10px;
     border-radius: 50%; 
     transition: 200ms;
+    cursor: pointer;
 }
 .send-message .icon:hover{
     background-color: rgba(0, 224, 0, 0.428);
