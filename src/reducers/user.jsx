@@ -10,6 +10,7 @@ const userSlice = createSlice({
         "is_forget_password" : false ,
         "id" : null,
         "email" : null ,
+        "toggle" : true,
     },
     reducers : {
         changeUser : (state,action) => {
@@ -21,5 +22,8 @@ const userSlice = createSlice({
             state.id = action.payload.id 
             state.email = action.payload.email
         },
+        userToggle : (state) => {
+            state.toggle = !state.toggle
+        }
     }
-});export const {changeUser} = userSlice.actions ; export default userSlice.reducer ;
+});export const {changeUser,userToggle} = userSlice.actions ; export default userSlice.reducer ;
