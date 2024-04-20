@@ -91,7 +91,10 @@ const Message = () => {
                                             <p className={mode}>
                                                 {lastMessage  ? lastMessage.update_date : ""}
                                             </p>
-                                            <p className="seen">دیده شده</p>
+                                            {
+                                               chat.un_read_messages.length ?<p className="count">{chat.un_read_messages.length}</p> :
+                                               <p className="seen">دیده شده</p>
+                                            }
                                         </div>
                                         <div className="user-text">
                                             <h3 className={mode}>

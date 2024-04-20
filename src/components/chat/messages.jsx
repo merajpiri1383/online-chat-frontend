@@ -41,7 +41,7 @@ const Messages = () => {
     const getMessages = async () => {
         scrollHandeler();
         if (chatType === "chat") {
-            await API.get(`/chat/${contact.chat_id}/`).then((response) => {
+            await API.get(`/chat/${contact.chat_id}/messages/`).then((response) => {
                 setMessages(response.data.messages);
             }).catch((error) => {
                 try {
@@ -52,7 +52,7 @@ const Messages = () => {
             })
         }
         if (chatType === "group") {
-            await API.get(`/group/${group.id}/`).then((response) => {
+            await API.get(`/group/${group.id}/messages/read/`).then((response) => {
                 setMessages(response.data.messages);
             }).catch((error) => {
                 try {

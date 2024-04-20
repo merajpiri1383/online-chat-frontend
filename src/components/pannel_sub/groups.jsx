@@ -52,13 +52,14 @@ const Groups = () => {
         <div className="message-content">
             {
                 groups.map((group, index) => {
+                    console.log(group.un_read_messages)
                     return (
                         <div className="user" key={index} onClick={() => groupClick(group)} >
 
                             <div className="user-time">
                                 {
-                                    group.messages.length > 0 && <p className="count">
-                                        {group.messages.length}
+                                    group.un_read_messages.length > 0 && <p className="count">
+                                        {group.un_read_messages.length}
                                     </p>
                                 }
                             </div>
