@@ -34,7 +34,36 @@ const SendMessage = () => {
     const [currentUser, setCurrentUser] = useState({});
     const chatType = useSelector((state) => state.page.chat_type);
     const group = useSelector((state) => state.group);
-    const [emoji, setEmoji] = useState(null);
+    const toggleMessage = useSelector((state) => state.message.messagetoggle);
+    const socket = useRef(null);
+
+    const getSocket = () => {
+        if (chatType === "chat") {
+            socket.current = new WebSocket(`ws://localhost:8000/ws/chat/${contact.chat_id}/`);
+        } else if (chatType === "group") {
+            socket.current = new WebSocket(`ws://localhost:8000/ws/chat/${contact.chat_id}/`);
+        }
+
+        socket.current.onclose = () => {
+            console.log("closed")
+            setTimeout(() => {
+                console.log("reconnecting ...")
+                getSocket();
+            }, [2000]);
+        }
+
+        socket.current.onmessage = (event) => {
+            if (JSON.parse(event.data).type === "message.send"){
+                console.log("refresh message")
+                dispatch(changeMessageToggle());
+            }
+        }
+    };
+
+    useEffect(() => {
+        getSocket();
+    }, [])
+
 
     const sendData = async () => {
         const formData = new FormData();
@@ -45,6 +74,7 @@ const SendMessage = () => {
                 const contact = response.data.with_who === currentUser ? response.data.create_by : response.data.with_who;
                 dispatch(changeContact({ "chat_id": response.data.chat, ...contact, ...contact.profile }))
                 dispatch(changeMessageToggle());
+                socket.current.send(JSON.stringify({"data":"message"}))
             }).catch((error) => {
                 try {
                     if (error.response.status === 401) {
@@ -70,8 +100,20 @@ const SendMessage = () => {
         }
 
         setContent("");
-        dispatch(contactToggle());
+        if (socket.current.readyState === 1) {
+            console.log("sending message ...")
+            socket.current.send(JSON.stringify({
+                type: "chat.message",
+                data: { "id": contact.chat_id }
+            }));
+        }
     };
+    
+    useEffect(() => {
+        socket.onmessage = (event) => {
+            console.log(event.data)
+        }
+    },[socket])
 
     useEffect(() => {
         getCurrentUser(setCurrentUser, navigate, location);
@@ -87,7 +129,6 @@ const SendMessage = () => {
         <Fade duration={300}>
             <form className={"send-message " + mode}>
                 <PiTelegramLogoBold className="icon" onClick={() => sendData()} />
-                {/* <HiMicrophone className="icon" /> */}
                 <InputEmoji
                     value={content}
                     onChange={setContent}

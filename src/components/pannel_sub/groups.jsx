@@ -27,7 +27,6 @@ const Groups = () => {
     const getGroups = async () => {
         await API.get("/group/").then((response) => {
             setGroups(response.data);
-            console.log(response.data)
         }).catch((error) => {
             try {
                 if (error.response.status === 401) {
@@ -52,7 +51,6 @@ const Groups = () => {
         <div className="message-content">
             {
                 groups.map((group, index) => {
-                    console.log(group.un_read_messages)
                     return (
                         <div className="user" key={index} onClick={() => groupClick(group)} >
 
