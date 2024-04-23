@@ -65,17 +65,17 @@ const getCurrentUser = async (setCurrentUser,navigate,location) => {
     })
 };
 
-const getChats = async (setState,navigate,location) => {
+const getChats = async (setChats) => {
         await API.get("/chat/").then((response) => {
-            setState(response.data);
-        }).catch((error) => {
-            try {
-                if (error.response.status === 401) {
-                    setAccessWhen401(navigate, location.pathname);
-                }
-            } catch { }
-        })
+            setChats(response.data);
+        }).catch((error) => console.log(error));
+    };
+
+const getGroups = async (setGroups) => {
+        await API.get("/group/").then((response) => {
+            setGroups(response.data);
+        }).catch((error) => console.log(error));
     };
 
 
-export default API ;export {setToken,clearToken,setAccessWhen401,getCurrentUser,getChats};
+export default API ;export {setToken,clearToken,setAccessWhen401,getCurrentUser,getChats,getGroups};

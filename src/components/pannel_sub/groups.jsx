@@ -5,7 +5,7 @@ import { changePage, changeChatType } from "../../reducers/page";
 // react tools 
 import { useState, useEffect } from "react";
 // import API
-import API, { setAccessWhen401, getCurrentUser } from "../../authentication/auth";
+import {getGroups} from "../../authentication/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 // react popup 
 import Popup from "reactjs-popup";
@@ -24,17 +24,7 @@ const Groups = () => {
 
 
 
-    const getGroups = async () => {
-        await API.get("/group/").then((response) => {
-            setGroups(response.data);
-        }).catch((error) => {
-            try {
-                if (error.response.status === 401) {
-                    setAccessWhen401(navigate, location.pathname);
-                }
-            } catch { }
-        })
-    };
+    
 
     const groupClick = (group) => {
         dispatch(changeChatType("group"))
@@ -44,7 +34,7 @@ const Groups = () => {
     };
 
     useEffect(() => {
-        getGroups();
+        getGroups(setGroups,navigate,location);
     }, [ToggleGroup])
 
     return (

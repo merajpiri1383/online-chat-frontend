@@ -3,15 +3,13 @@ import "../../static/chat/sendMessage.css";
 // get mode of background 
 import { useSelector, useDispatch } from "react-redux";
 // icons 
-import { FaRegFaceSmile } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa";
-import { HiMicrophone } from "react-icons/hi2";
 import { PiTelegramLogoBold } from "react-icons/pi";
 // animation 
-import { Fade, Slide } from "react-awesome-reveal";
+import { Fade } from "react-awesome-reveal";
 import { useEffect, useRef, useState } from "react";
 // API 
-import API, { setAccessWhen401, getCurrentUser } from "../../authentication/auth";
+import API, { setAccessWhen401, getCurrentUser,getChats } from "../../authentication/auth";
 // react toastify
 import { toast } from "react-toastify";
 // change contact
@@ -20,6 +18,9 @@ import { changeMessageToggle } from "../../reducers/message";
 import { useLocation, useNavigate } from "react-router-dom";
 // react emoji
 import InputEmoji from 'react-input-emoji'
+// socket 
+import { sendDataSocket } from "../../App";
+
 
 
 
@@ -34,35 +35,6 @@ const SendMessage = () => {
     const [currentUser, setCurrentUser] = useState({});
     const chatType = useSelector((state) => state.page.chat_type);
     const group = useSelector((state) => state.group);
-    const toggleMessage = useSelector((state) => state.message.messagetoggle);
-    const socket = useRef(null);
-
-    const getSocket = () => {
-        if (chatType === "chat") {
-            socket.current = new WebSocket(`ws://localhost:8000/ws/chat/${contact.chat_id}/`);
-        } else if (chatType === "group") {
-            socket.current = new WebSocket(`ws://localhost:8000/ws/chat/${contact.chat_id}/`);
-        }
-
-        socket.current.onclose = () => {
-            console.log("closed")
-            setTimeout(() => {
-                console.log("reconnecting ...")
-                getSocket();
-            }, [2000]);
-        }
-
-        socket.current.onmessage = (event) => {
-            if (JSON.parse(event.data).type === "message.send"){
-                console.log("refresh message")
-                dispatch(changeMessageToggle());
-            }
-        }
-    };
-
-    useEffect(() => {
-        getSocket();
-    }, [])
 
 
     const sendData = async () => {
@@ -70,11 +42,17 @@ const SendMessage = () => {
         formData.append("text", content)
 
         if (chatType === "chat") {
+
+            sendDataSocket({
+                "type" : "message.send" ,
+                "id" : `chat_${contact.chat_id}`
+            })
+
+
             await API.post(`/chat/${contact.chat_id}/message/create/`, formData).then((response) => {
                 const contact = response.data.with_who === currentUser ? response.data.create_by : response.data.with_who;
                 dispatch(changeContact({ "chat_id": response.data.chat, ...contact, ...contact.profile }))
                 dispatch(changeMessageToggle());
-                socket.current.send(JSON.stringify({"data":"message"}))
             }).catch((error) => {
                 try {
                     if (error.response.status === 401) {
@@ -86,6 +64,12 @@ const SendMessage = () => {
         }
 
         if (chatType === "group") {
+
+            sendDataSocket({
+                "type" : "message.send" ,
+                "id" : `group_${group.id}`
+            })
+
             formData.append("group", group.id);
             await API.post("/group/message/create/", formData).then((response) => {
                 console.log(response.data)
@@ -100,27 +84,15 @@ const SendMessage = () => {
         }
 
         setContent("");
-        if (socket.current.readyState === 1) {
-            console.log("sending message ...")
-            socket.current.send(JSON.stringify({
-                type: "chat.message",
-                data: { "id": contact.chat_id }
-            }));
-        }
+        
+        dispatch(contactToggle());
     };
-    
-    useEffect(() => {
-        socket.onmessage = (event) => {
-            console.log(event.data)
-        }
-    },[socket])
 
     useEffect(() => {
         getCurrentUser(setCurrentUser, navigate, location);
     }, []);
 
     const onEnterHandeler = (text) => {
-        console.log("enterd")
         sendData();
     }
 

@@ -23,7 +23,7 @@ import AddContactPopUp from "../popup/AddContact";
 import API, { setAccessWhen401 } from "../../authentication/auth";
 // change contact and page 
 import {changePage,changeChatType} from "../../reducers/page";
-import {changeContact ,contactToggle} from "../../reducers/contact";
+import  {changeContact ,contactToggle} from "../../reducers/contact";
 import { changeMessageToggle } from "../../reducers/message";
 
 
@@ -55,7 +55,7 @@ const Users = () => {
                 if (error.response.status === 401) {
                     setAccessWhen401(navigate, location.pathname);
                 }
-            } catch { }
+            } catch { } 
         });
         dispatch(changeMessageToggle())
     };
@@ -79,7 +79,9 @@ const Users = () => {
         dispatch(changeChatType("chat"))
         dispatch(changePage("chat"));
         getOrCreateChatWithContact(user);
+        dispatch(changeContact({...user}))
     }
+
 
     useEffect(() => {
         getData();

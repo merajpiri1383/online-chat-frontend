@@ -15,7 +15,7 @@ import { FaUser } from "react-icons/fa6";
 // react tools 
 
 
-const Messages = () => {
+const Messages = () => { 
 
     const mode = useSelector((state) => state.background.mode);
     const contact = useSelector((state) => state.contact);
@@ -37,19 +37,20 @@ const Messages = () => {
         },[100])
     };
 
-
     const getMessages = async () => {
         scrollHandeler();
         if (chatType === "chat") {
-            await API.get(`/chat/${contact.chat_id}/messages/`).then((response) => {
-                setMessages(response.data.messages);
-            }).catch((error) => {
-                try {
-                    if (error.response.status === 401) {
-                        setAccessWhen401(navigate, location);
-                    }
-                } catch { }
-            })
+            if(contact.chat_id){
+                await API.get(`/chat/${contact.chat_id}/messages/`).then((response) => {
+                    setMessages(response.data.messages);
+                }).catch((error) => {
+                    try {
+                        if (error.response.status === 401) {
+                            setAccessWhen401(navigate, location);
+                        }
+                    } catch { }
+                })
+            }
         }
         if (chatType === "group") {
             await API.get(`/group/${group.id}/messages/read/`).then((response) => {
@@ -73,7 +74,7 @@ const Messages = () => {
 
     useEffect(() => {
         getMessages();
-    }, [messageToggle, contactToggle, groupToggle])
+    }, [messageToggle, contactToggle, groupToggle,contact]);
 
     scrollHandeler();
 
